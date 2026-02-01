@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://b4ltv1n25thr6"]
+
+[ext_resource type="Script" uid="uid://cg6d2m63upki1" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://d0h280ylu6vbl" path="res://player/fp_cam.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://b1pebc1o7t8m5" path="res://player/player_interact.gd" id="3_8t03j"]
+[ext_resource type="AudioStream" uid="uid://eqlentp01xuq" path="res://player/sounds/footsteps/footstep_1.wav" id="3_boad6"]
+[ext_resource type="AudioStream" uid="uid://by8dmshhu4ejq" path="res://player/sounds/footsteps/footstep_2.wav" id="4_rgyib"]
+[ext_resource type="AudioStream" uid="uid://dqxxb37fiv0jn" path="res://player/sounds/footsteps/footstep_3.wav" id="5_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://q5abfjpo42gh" path="res://player/sounds/footsteps/footstep_4.wav" id="6_8t03j"]
+[ext_resource type="AudioStream" uid="uid://6a0ibe1xisjr" path="res://player/sounds/footsteps/footstep_5.wav" id="7_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://daep1n0g0sf5i" path="res://player/sounds/footsteps/footstep_6.wav" id="8_hg6s5"]
+[ext_resource type="AudioStream" uid="uid://4wygyk7vbfl" path="res://player/sounds/footsteps/footstep_7.wav" id="9_8t03j"]
+[ext_resource type="AudioStream" uid="uid://cqidwdhdjwctu" path="res://player/sounds/click.mp3" id="11_2ieo8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
+
+[sub_resource type="Animation" id="Animation_rkbax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g1dw6"]
+resource_name = "head_bob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.1, 0, 0), Vector3(0, -0.1, 0), Vector3(0.1, 0, 0), Vector3(0, -0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yw30f"]
+_data = {
+&"RESET": SubResource("Animation_rkbax"),
+&"head_bob": SubResource("Animation_g1dw6")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ebec5"]
+streams_count = 7
+stream_0/stream = ExtResource("3_boad6")
+stream_1/stream = ExtResource("4_rgyib")
+stream_2/stream = ExtResource("5_hg6s5")
+stream_3/stream = ExtResource("6_8t03j")
+stream_4/stream = ExtResource("7_2ieo8")
+stream_5/stream = ExtResource("8_hg6s5")
+stream_6/stream = ExtResource("9_8t03j")
+
+[node name="player" type="CharacterBody3D" unique_id=131568609]
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1578453549]
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1785655457]
+mesh = SubResource("CapsuleMesh_oul6g")
+
+[node name="head" type="Node3D" parent="." unique_id=1607311179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+script = ExtResource("2_rkbax")
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=638950397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="head" unique_id=802151159]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -1.5, 0)
+script = ExtResource("3_8t03j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head" unique_id=1067734280]
+libraries/ = SubResource("AnimationLibrary_yw30f")
+
+[node name="footstep_audio" type="AudioStreamPlayer3D" parent="." unique_id=258626940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.734287, 0)
+stream = SubResource("AudioStreamRandomizer_ebec5")
+unit_size = 5.0
+
+[node name="interaction_click" type="AudioStreamPlayer3D" parent="." unique_id=1996361484]
+stream = ExtResource("11_2ieo8")

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d3fdpg13dstsc"]
+
+[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="1_w8frs"]
+[ext_resource type="PackedScene" uid="uid://dw5r7xyvprkup" path="res://scenes/dialogue_ui.tscn" id="2_2r41h"]
+[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://tavghaxbt1fh" path="res://scenery/door.tscn" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://xq720cbixdqg" path="res://scenes/dialogue_trigger.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://cq31v50akqbvf" path="res://characters/angel.tscn" id="7_klq6b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w8frs"]
+sky_material = SubResource("ProceduralSkyMaterial_w7c3h")
+
+[sub_resource type="Environment" id="Environment_mx8sn"]
+background_mode = 2
+sky = SubResource("Sky_w8frs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
+albedo_texture = ExtResource("1_2q6dc")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rd3vj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7c3h"]
+
+[node name="level" type="Node3D" unique_id=363311239]
+
+[node name="UI" parent="." unique_id=955173854 instance=ExtResource("1_w8frs")]
+
+[node name="dialogue_ui" parent="." unique_id=1238095067 instance=ExtResource("2_2r41h")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=656021149]
+environment = SubResource("Environment_mx8sn")
+
+[node name="player" parent="." unique_id=131568609 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5723215, 0)
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=1694999558]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_w7c3h")
+mesh = SubResource("BoxMesh_rd3vj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=236405721]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1695554897]
+shape = SubResource("BoxShape3D_rd3vj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=601602552]
+transform = Transform3D(1, 0, 0, 0, -0.6076392, 0.79421324, 0, -0.79421324, -0.6076392, 0, 6.0886064, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=481721863]
+transform = Transform3D(1, 0, 0, 0, 32.614677, 0, 0, 0, 1, -5.834631, -6.176436, 2.7068548)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1390995172]
+transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, 0.28499794, 1.4658484, 5.379919)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=48187476]
+transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, 0.28499794, 1.4658484, -5.377286)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1768931607]
+transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, -3.384921, 1.4658484, -3.1142006)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="door" parent="." unique_id=1176906371 instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1966052, 1.820488, -1.1266794)
+
+[node name="dialogue_trigger" parent="." unique_id=1686025038 node_paths=PackedStringArray("speaker") instance=ExtResource("5_ppgk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4459844, 1.3589635, 0)
+speaker = NodePath("../angel")
+
+[node name="angel" parent="." unique_id=686629487 instance=ExtResource("7_klq6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0292397, 1.3344102, 0)
