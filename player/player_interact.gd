@@ -7,7 +7,6 @@ var talking_cooldown = false
 
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
-		print(talking_cooldown)
 		var hit = get_collider()
 		# interactable npc/item dialogue
 		if hit.get_collision_layer() != null and hit.get_collision_layer() == 17:
