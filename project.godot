@@ -84,7 +84,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/texts/object_test.dialogue", "res://dialogue/texts/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/texts/object_test.dialogue", "res://dialogue/texts/test.dialogue", "res://dialogue/texts/door_locked.dialogue")
 
 [layer_names]
 

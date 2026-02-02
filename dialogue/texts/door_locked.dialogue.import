@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://by5sf56m5pjov"
+path="res://.godot/imported/door_locked.dialogue-7dedbcf692cda5edea3e854c3ba49b04.tres"
+
+[deps]
+
+source_file="res://dialogue/texts/door_locked.dialogue"
+dest_files=["res://.godot/imported/door_locked.dialogue-7dedbcf692cda5edea3e854c3ba49b04.tres"]
+
+[params]
+
+defaults=true

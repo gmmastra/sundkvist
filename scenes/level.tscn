@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d3fdpg13dstsc"]
+[gd_scene format=4 uid="uid://d3fdpg13dstsc"]
 
 [ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="1_w8frs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xq720cbixdqg" path="res://scenes/actionable.tscn" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://bu4f8kukctt2y" path="res://scenery/door_locked.tscn" id="6_olg7q"]
 [ext_resource type="Resource" uid="uid://fr88cr2a336h" path="res://dialogue/texts/object_test.dialogue" id="7_8c41q"]
+[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://inventory/items/selectable.gd" id="7_8iemx"]
 [ext_resource type="PackedScene" uid="uid://cq31v50akqbvf" path="res://characters/angel.tscn" id="7_klq6b"]
 [ext_resource type="Resource" uid="uid://syasms7k50d7" path="res://dialogue/texts/test.dialogue" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://3fxyk6leimp0" path="res://inventory/items/key.tscn" id="11_t1rx8"]
@@ -38,6 +39,25 @@ uv1_scale = Vector3(3, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b121j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8c41q"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t1rx8"]
+_surfaces = [{
+"aabb": AABB(-0.5288675, -0.5288675, -0.5288675, 1.057735, 1.057735, 1.057735),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("3GMHv9xjBz/cYwc/3GMHP9xjBz/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjB7/cYwe/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHP9xjBz/cYwe/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjB7/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjBz/cYwc/3GMHv9xjB7/cYwc/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHP9xjBz/cYwe/3GMHv9xjB7/cYwe/3GMHv9xjBz/cYwe/3GMHP9xjB7/cYwe//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8iemx"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1rx8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klq6b"]
 
@@ -130,21 +150,24 @@ transform = Transform3D(0.00938978, 0, 0.999956, 0, 1, 0, -0.999956, 0, 0.009389
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=690583146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3089266, 1.0265961, 1.3482692)
-collision_layer = 17
+collision_layer = 19
+script = ExtResource("7_8iemx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1849342789]
+[node name="item" type="CollisionShape3D" parent="StaticBody3D" unique_id=1849342789]
 shape = SubResource("BoxShape3D_b121j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1066137955]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/item" unique_id=1066137955]
 mesh = SubResource("BoxMesh_8c41q")
 
+[node name="outline" type="MeshInstance3D" parent="StaticBody3D/item/MeshInstance3D" unique_id=2069053451]
+mesh = SubResource("ArrayMesh_t1rx8")
+surface_material_override/0 = SubResource("StandardMaterial3D_8iemx")
+
 [node name="actionable" parent="StaticBody3D" unique_id=967415909 instance=ExtResource("5_ppgk2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.754911, 0.33236742, -1.3482692)
 dialogue_resource = ExtResource("7_8c41q")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/actionable" unique_id=185102378]
-transform = Transform3D(1, 0, 0, 0, 1.7702625, 0, 0, 0, 1, -7.679506, -0.6155932, 1.3848321)
-shape = SubResource("BoxShape3D_klq6b")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/actionable" unique_id=1496756977]
+shape = SubResource("BoxShape3D_t1rx8")
 
 [node name="angel" parent="." unique_id=686629487 instance=ExtResource("7_klq6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0292397, 1.3344102, 0)

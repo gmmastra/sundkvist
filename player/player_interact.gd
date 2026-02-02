@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 		# unlocked door
 		if hit.name == "door_unlocked":
 			if Input.is_action_just_pressed("interact"):
-				hit.get_parent().get_parent().get_parent().toggle_door()
+				hit.get_parent().get_parent().toggle_door()
 	else:
 		interact_object.emit(null)
 
