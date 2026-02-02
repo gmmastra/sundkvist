@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 # movement
 func _physics_process(delta: float) -> void:
 	# crouching
-	if Input.is_action_pressed("crouch"):
+	if Input.is_action_pressed("crouch") and !$head/RayCast3D.talking:
 		crouching = true
 		SPEED = CROUCH_SPEED
 		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.5, 0.1)
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	# directional movement
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and !$head/RayCast3D.talking:
 		if $head/AnimationPlayer.speed_scale != 2.0 and !Input.is_action_pressed("sprint") and !Input.is_action_pressed("crouch"):
 			$head/AnimationPlayer.speed_scale = 2.0
 		velocity.x = direction.x * SPEED

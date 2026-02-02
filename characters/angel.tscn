@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cq31v50akqbvf"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ndjj2"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ndjj2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c488"]
@@ -7,7 +9,10 @@ albedo_color = Color(1, 0.16862746, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dy7ds"]
 
-[node name="angel" type="Node3D" unique_id=686629487]
+[node name="angel" type="CharacterBody3D" unique_id=30574932]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1614622681]
+shape = SubResource("CapsuleShape3D_ndjj2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1524996452]
 mesh = SubResource("CapsuleMesh_ndjj2")
