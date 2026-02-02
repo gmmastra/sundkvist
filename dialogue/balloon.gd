@@ -88,7 +88,7 @@ func _process(_delta: float) -> void:
 	if is_instance_valid(dialogue_line):
 		if not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice"):
 			progress.visible = true
-			get_node("Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control/AnimationPlayer").play("progress")
+			get_node("Balloon/Control/AnimationPlayer").play("progress")
 		else:
 			progress.visible = false
 

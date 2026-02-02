@@ -58,7 +58,7 @@ corner_detail = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font = ExtResource("2_3fodd")
-default_font_size = 20
+default_font_size = 13
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -75,7 +75,7 @@ Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
-Button/constants/outline_size = 5
+Button/constants/outline_size = 4
 Button/fonts/font = ExtResource("2_3fodd")
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
@@ -97,7 +97,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Progress:position")
+tracks/0/path = NodePath("Progress:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,7 +113,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Progress:position")
+tracks/0/path = NodePath("Progress:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -149,7 +149,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -219.0
+offset_top = -108.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -162,6 +162,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_af48w")
 
 [node name="MarginContainer" type="MarginContainer" parent="Balloon/MarginContainer/PanelContainer" unique_id=140024901]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer" unique_id=1834480022]
 layout_mode = 2
@@ -175,7 +177,7 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -186,31 +188,48 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 4
 text = "Dialogue..."
 
-[node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=675055783]
+[node name="Control" type="Control" parent="Balloon" unique_id=675055783]
 custom_minimum_size = Vector2(20, 10)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_vertical = 8
 
-[node name="Progress" type="RichTextLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=1462244948]
+[node name="Progress" type="RichTextLabel" parent="Balloon/Control" unique_id=1462244948]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -38.0
-offset_top = -12.0
-offset_right = -16.0
-offset_bottom = 11.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -22.0
+offset_right = -26.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 7
 bbcode_enabled = true
 text = "▼
 "
 fit_content = true
 scroll_active = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=1519884160]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/Control" unique_id=1519884160]
 libraries/ = SubResource("AnimationLibrary_267us")
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" unique_id=545068653 node_paths=PackedStringArray("response_template")]
@@ -222,9 +241,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -290.5
-offset_top = -35.0
+offset_top = -41.0
 offset_right = 290.5
-offset_bottom = 35.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8

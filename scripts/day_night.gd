@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var start_time = 0
-@export var day_length:int = 10
+@export var day_length:int = 12
 
 @export var morning_color_top: Color = Color("8eb9fd")
 @export var morning_color_horiz: Color = Color("d3916b")
@@ -72,5 +72,5 @@ func _day_change_animation():
 	tween.parallel()
 	tween.tween_property(world_environment, "environment:sky:sky_material:ground_horizon_color", horizon_color, duration)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_refresh_day_state()

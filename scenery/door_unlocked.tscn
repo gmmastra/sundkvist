@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://tavghaxbt1fh"]
+
+[ext_resource type="Script" uid="uid://x412h6p0ccpo" path="res://scenery/door.gd" id="1_jy65v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t3tcx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jy65v"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l435u"]
+
+[sub_resource type="Animation" id="Animation_1fsns"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t3tcx"]
+resource_name = "close"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m6kou"]
+resource_name = "open"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hinge:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4owcv"]
+_data = {
+&"RESET": SubResource("Animation_1fsns"),
+&"close": SubResource("Animation_t3tcx"),
+&"open": SubResource("Animation_m6kou")
+}
+
+[node name="door" type="Node3D" unique_id=1176906371]
+script = ExtResource("1_jy65v")
+
+[node name="hinge" type="Node3D" parent="." unique_id=541826696]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.71693933, 0, 0)
+
+[node name="body" type="MeshInstance3D" parent="hinge" unique_id=107935790]
+transform = Transform3D(1.452619, 0, 0, 0, 2.6240513, 0, 0, 0, 0.1, 0.71693933, 0, 0)
+mesh = SubResource("BoxMesh_t3tcx")
+
+[node name="door_unlocked" type="StaticBody3D" parent="hinge/body" unique_id=1673132103]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hinge/body/door_unlocked" unique_id=1505642299]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_jy65v")
+
+[node name="knob" type="MeshInstance3D" parent="hinge" unique_id=46415538]
+transform = Transform3D(0.1907428, -1.7484556e-08, -7.642742e-16, 0, 8.742278e-09, -0.2, -1.6675264e-08, -0.2, -8.742278e-09, 1.2409828, 0, 0)
+mesh = SubResource("CylinderMesh_l435u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2086222094]
+libraries/ = SubResource("AnimationLibrary_4owcv")

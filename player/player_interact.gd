@@ -1,5 +1,6 @@
 extends RayCast3D
 
+signal interact_object
 @onready var player: CharacterBody3D = get_tree().current_scene.get_node("player")
 
 var talking = false
@@ -8,8 +9,14 @@ var talking_cooldown = false
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var hit = get_collider()
-		# interactable npc/item dialogue
-		if hit.get_collision_layer() != null and hit.get_collision_layer() == 17:
+		interact_object.emit(hit)
+		
+		#highlight interactable objects [layers 2 or 5]
+		if hit.get_collision_layer() != null and hit.get_collision_layer() in [3, 19]:
+			pass
+			
+		# interactable npc/item with dialogue
+		if hit.get_collision_layer() != null and hit.get_collision_layer() == 19:
 			if Input.is_action_just_pressed("interact") and !talking and !talking_cooldown:
 				talking = true
 				talking_cooldown = false
@@ -17,10 +24,13 @@ func _physics_process(_delta: float) -> void:
 				player_stop()
 				hit.get_node("actionable").action()
 				return
-		# interactable door
-		if hit.name == "door":
+				
+		# unlocked door
+		if hit.name == "door_unlocked":
 			if Input.is_action_just_pressed("interact"):
 				hit.get_parent().get_parent().get_parent().toggle_door()
+	else:
+		interact_object.emit(null)
 
 func player_stop():
 	player.SPEED = 0
