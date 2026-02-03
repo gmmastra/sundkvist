@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://tavghaxbt1fh"]
 
 [ext_resource type="Script" uid="uid://x412h6p0ccpo" path="res://scenery/door.gd" id="1_jy65v"]
-[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://inventory/items/selectable.gd" id="2_qvk55"]
+[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://scripts/selectable.gd" id="2_qvk55"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jy65v"]
 

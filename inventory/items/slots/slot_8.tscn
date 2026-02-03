@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d27h7o5i8oqap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcici"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gcici"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_h1dhr"]
+
+[node name="slot8" type="Button" unique_id=752464260]
+offset_right = 35.0
+offset_bottom = 35.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gcici")
+disabled = true
+icon = SubResource("ViewportTexture_gcici")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1509017652]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(35, 35)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=1770861067]
+visible = false
+mesh = SubResource("BoxMesh_h1dhr")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=82352490]
+transform = Transform3D(0.7071068, 0.5, -0.5, 0, 0.7071068, 0.70710677, 0.7071068, -0.5, 0.5, -2.044282, 2.9042032, 2.0382915)
+projection = 1
+current = true
+size = 2.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1149502689]
+transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39890912, 0, 1.7625611, 1.1171428)

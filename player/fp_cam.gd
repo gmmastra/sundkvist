@@ -6,7 +6,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		get_parent().rotate_y(deg_to_rad(-event.relative.x * sensitivity))
 		rotate_x(deg_to_rad(-event.relative.y * sensitivity))
 		rotation.x = clamp(rotation.x, deg_to_rad(-60), deg_to_rad(80))

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bu4f8kukctt2y"]
 
 [ext_resource type="Script" uid="uid://x412h6p0ccpo" path="res://scenery/door.gd" id="1_t6ew0"]
-[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://inventory/items/selectable.gd" id="2_2xl37"]
+[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://scripts/selectable.gd" id="2_2xl37"]
 [ext_resource type="Script" uid="uid://bdovayvb6jbks" path="res://scenes/actionable.gd" id="3_ek06o"]
 [ext_resource type="Resource" uid="uid://by5sf56m5pjov" path="res://dialogue/texts/door_locked.dialogue" id="4_wjjg0"]
 

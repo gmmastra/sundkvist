@@ -11,9 +11,12 @@ func _physics_process(_delta: float) -> void:
 		var hit = get_collider()
 		interact_object.emit(hit)
 		
-		#highlight interactable objects [layers 2 or 5]
-		if hit.get_collision_layer() != null and hit.get_collision_layer() in [3, 19]:
-			pass
+		# pickup item
+		if hit.get_collision_layer() != null and hit.get_collision_layer() == 129:
+			if Input.is_action_just_pressed("interact"):
+				Inventory.add_to_inventory(hit)
+				hit.hide()
+				hit.get_node("item").disabled = true
 			
 		# interactable npc/item with dialogue
 		if hit.get_collision_layer() != null and hit.get_collision_layer() == 19:

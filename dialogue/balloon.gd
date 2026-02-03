@@ -213,7 +213,7 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
 
-func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
+func _on_dialogue_label_spoke(letter: String, letter_index: int, _speed: float) -> void:
 	if (letter in ["!", "?"] or letter_index % 2 != 0) and not letter in [".", " ", ","] :
 		if letter in ["!", "?"]:
 			talk_sound.pitch_scale = 1.25

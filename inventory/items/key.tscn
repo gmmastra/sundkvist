@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://3fxyk6leimp0"]
 
-[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://inventory/items/selectable.gd" id="1_mrjhw"]
+[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://scripts/selectable.gd" id="1_mrjhw"]
+[ext_resource type="CylinderMesh" uid="uid://cueyl4t661n77" path="res://inventory/items/meshes/key.tres" id="2_kr3sx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_l71u2"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mrjhw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kr3sx"]
 albedo_color = Color(0.8221194, 0.60038817, 0.13816993, 1)
@@ -28,13 +27,14 @@ emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 2.32
 
 [node name="key" type="StaticBody3D" unique_id=1549143667]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)
 script = ExtResource("1_mrjhw")
 
 [node name="item" type="CollisionShape3D" parent="." unique_id=1816127317]
 shape = SubResource("CylinderShape3D_l71u2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="item" unique_id=1195474071]
-mesh = SubResource("CylinderMesh_mrjhw")
+mesh = ExtResource("2_kr3sx")
 surface_material_override/0 = SubResource("StandardMaterial3D_kr3sx")
 
 [node name="outline" type="MeshInstance3D" parent="item/MeshInstance3D" unique_id=1476075086]

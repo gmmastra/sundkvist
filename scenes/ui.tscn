@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dnf6fcr0pulj2" path="res://scripts/clock.gd" id="1_nt7q6"]
 [ext_resource type="Shader" uid="uid://dmm14mushcw2b" path="res://shaders/reticle.gdshader" id="1_x4jx1"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="3_yev5y"]
+[ext_resource type="PackedScene" uid="uid://pjxww50bjgdr" path="res://inventory/items/slots/slot_1.tscn" id="4_gdt2y"]
+[ext_resource type="PackedScene" uid="uid://bvnm4syadkk18" path="res://inventory/items/slots/slot_2.tscn" id="5_wm3ai"]
+[ext_resource type="PackedScene" uid="uid://wyr87phvu7u" path="res://inventory/items/slots/slot_3.tscn" id="6_8dubc"]
+[ext_resource type="PackedScene" uid="uid://b5x3iqg27q5m" path="res://inventory/items/slots/slot_4.tscn" id="7_6rmj2"]
+[ext_resource type="PackedScene" uid="uid://b1f4fwcl2vr6y" path="res://inventory/items/slots/slot_5.tscn" id="8_vsj0x"]
+[ext_resource type="PackedScene" uid="uid://bgxftm6ortpf2" path="res://inventory/items/slots/slot_6.tscn" id="9_qsv74"]
+[ext_resource type="PackedScene" uid="uid://c12h8cicebcqj" path="res://inventory/items/slots/slot_7.tscn" id="10_h1mc3"]
+[ext_resource type="PackedScene" uid="uid://d27h7o5i8oqap" path="res://inventory/items/slots/slot_8.tscn" id="11_cof4p"]
+[ext_resource type="PackedScene" uid="uid://bgr4y0ieqe3q7" path="res://inventory/items/slots/slot_9.tscn" id="12_f7tlh"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_nt7q6"]
 
@@ -44,6 +54,51 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlq6p"]
+
+[sub_resource type="Gradient" id="Gradient_yev5y"]
+colors = PackedColorArray(0.09239707, 0.09239706, 0.09239706, 1, 0.09411765, 0.09411765, 0.09411765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdt2y"]
+gradient = SubResource("Gradient_yev5y")
+
+[sub_resource type="Gradient" id="Gradient_gdt2y"]
+colors = PackedColorArray(0.18717614, 0.18717614, 0.18717614, 1, 0.1882353, 0.1882353, 0.1882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wm3ai"]
+gradient = SubResource("Gradient_gdt2y")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6rmj2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vsj0x"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qsv74"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h1mc3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cof4p"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f7tlh"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8k7j3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jkdwc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rlppe"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Theme" id="Theme_yev5y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p7vwb"]
 
 [node name="UI" type="Control" unique_id=955173854]
 layout_direction = 1
@@ -93,10 +148,10 @@ offset_bottom = 1.75
 [node name="clock" type="Control" parent="." unique_id=757002547]
 layout_mode = 1
 anchors_preset = 0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 65.0
-offset_bottom = 65.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 59.999985
+offset_bottom = 60.0
 script = ExtResource("1_nt7q6")
 
 [node name="face" type="Sprite2D" parent="clock" unique_id=1508947]
@@ -125,6 +180,173 @@ autostart = true
 
 [node name="min_timer" type="Timer" parent="clock" unique_id=1370423176]
 autostart = true
+
+[node name="shortkeys" type="RichTextLabel" parent="." unique_id=1530808073]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -54.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -3
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("3_yev5y")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[I]
+
+[M]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="inventory" type="Control" parent="." unique_id=1370828803]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="CenterContainer" parent="inventory" unique_id=652253390]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="Sprite2D" parent="inventory/background" unique_id=235520259]
+scale = Vector2(2.5, 2.5)
+texture = SubResource("GradientTexture2D_gdt2y")
+
+[node name="ColorRect2" type="Sprite2D" parent="inventory/background" unique_id=1830759]
+position = Vector2(-7.6293945e-06, -86)
+scale = Vector2(2.5, 0.20999998)
+texture = SubResource("GradientTexture2D_wm3ai")
+
+[node name="ColorRect3" type="Sprite2D" parent="inventory/background" unique_id=227601201]
+position = Vector2(7.6293945e-06, 87)
+scale = Vector2(2.5, 0.20999998)
+texture = SubResource("GradientTexture2D_wm3ai")
+
+[node name="slot_container" type="PanelContainer" parent="inventory" unique_id=1233720573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -22.5
+offset_right = 80.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p7vwb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/slot_container" unique_id=51901711]
+layout_mode = 2
+
+[node name="slots" type="GridContainer" parent="inventory/slot_container/VBoxContainer" unique_id=783641616]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 11
+columns = 3
+
+[node name="slot1" parent="inventory/slot_container/VBoxContainer/slots" unique_id=752464260 instance=ExtResource("4_gdt2y")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_6rmj2")
+
+[node name="slot2" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2007235238 instance=ExtResource("5_wm3ai")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_vsj0x")
+
+[node name="slot3" parent="inventory/slot_container/VBoxContainer/slots" unique_id=913192253 instance=ExtResource("6_8dubc")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_qsv74")
+
+[node name="slot4" parent="inventory/slot_container/VBoxContainer/slots" unique_id=1527034952 instance=ExtResource("7_6rmj2")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_h1mc3")
+
+[node name="slot5" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2137188715 instance=ExtResource("8_vsj0x")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_cof4p")
+
+[node name="slot6" parent="inventory/slot_container/VBoxContainer/slots" unique_id=765997557 instance=ExtResource("9_qsv74")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_f7tlh")
+
+[node name="slot7" parent="inventory/slot_container/VBoxContainer/slots" unique_id=988313523 instance=ExtResource("10_h1mc3")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_8k7j3")
+
+[node name="slot8" parent="inventory/slot_container/VBoxContainer/slots" unique_id=417824350 instance=ExtResource("11_cof4p")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_jkdwc")
+
+[node name="slot9" parent="inventory/slot_container/VBoxContainer/slots" unique_id=344328651 instance=ExtResource("12_f7tlh")]
+layout_mode = 2
+icon = SubResource("ViewportTexture_rlppe")
+
+[node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 29.0
+offset_right = 239.0
+offset_bottom = 41.0
+theme = SubResource("Theme_yev5y")
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("3_yev5y")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "item"
+
+[node name="item_desc" type="RichTextLabel" parent="inventory" unique_id=1737961791]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 201.0
+offset_right = 234.0
+offset_bottom = 213.0
+theme = SubResource("Theme_yev5y")
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("3_yev5y")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "item properties..."
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=322422707]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(35, 35)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=71434096]
+mesh = SubResource("BoxMesh_p7vwb")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1144359512]
+transform = Transform3D(0.7071068, 0.5, -0.5, 0, 0.7071068, 0.70710677, 0.7071068, -0.5, 0.5, -2.044282, 2.9042032, 2.0382915)
+projection = 1
+current = true
+size = 2.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1873187784]
+transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39890912, 0, 1.7625611, 1.1171428)
 
 [connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_hour_timer_timeout"]
 [connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_timer_timeout"]
