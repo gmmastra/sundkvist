@@ -1,3 +1,10 @@
 ~ start
-It's locked.
+if !PlayerData.inventory["key"].used:
+	It's locked.
+	do Inventory.open_inventory()
+	if PlayerData.inventory["key"].used:
+		It's unlocked!
+else
+	It's unlocked!
+Nothing happened.
 => END

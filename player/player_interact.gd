@@ -26,7 +26,6 @@ func _physics_process(_delta: float) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				player_stop()
 				hit.get_node("actionable").action()
-				return
 				
 		# unlocked door
 		if hit.name == "door_unlocked":

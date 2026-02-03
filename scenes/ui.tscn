@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8vwe2cwmrdoh"]
 
 [ext_resource type="Script" uid="uid://dnf6fcr0pulj2" path="res://scripts/clock.gd" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://cfaknnwy5kgvv" path="res://scripts/global/ui_listener.gd" id="1_vsj0x"]
 [ext_resource type="Shader" uid="uid://dmm14mushcw2b" path="res://shaders/reticle.gdshader" id="1_x4jx1"]
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="3_yev5y"]
 [ext_resource type="PackedScene" uid="uid://pjxww50bjgdr" path="res://inventory/items/slots/slot_1.tscn" id="4_gdt2y"]
@@ -69,9 +70,6 @@ gradient = SubResource("Gradient_gdt2y")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6rmj2"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_vsj0x"]
 viewport_path = NodePath("SubViewport")
 
@@ -96,21 +94,20 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_rlppe"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ycmcx"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="Theme" id="Theme_yev5y"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p7vwb"]
 
-[node name="UI" type="Control" unique_id=955173854]
-layout_direction = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="UI" type="CanvasLayer" unique_id=1880132005]
+process_mode = 3
+layer = 100
+script = ExtResource("1_vsj0x")
 
 [node name="stamina" type="VSlider" parent="." unique_id=258750285]
-layout_mode = 1
+process_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -130,7 +127,7 @@ step = 0.0
 value = 1.0
 
 [node name="Control" type="Control" parent="." unique_id=981135388]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -146,7 +143,8 @@ offset_right = 1.75
 offset_bottom = 1.75
 
 [node name="clock" type="Control" parent="." unique_id=757002547]
-layout_mode = 1
+process_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -183,7 +181,6 @@ autostart = true
 
 [node name="shortkeys" type="RichTextLabel" parent="." unique_id=1530808073]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -212,7 +209,7 @@ vertical_alignment = 2
 
 [node name="inventory" type="Control" parent="." unique_id=1370828803]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -271,39 +268,39 @@ columns = 3
 
 [node name="slot1" parent="inventory/slot_container/VBoxContainer/slots" unique_id=752464260 instance=ExtResource("4_gdt2y")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_6rmj2")
+icon = SubResource("ViewportTexture_vsj0x")
 
 [node name="slot2" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2007235238 instance=ExtResource("5_wm3ai")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_vsj0x")
+icon = SubResource("ViewportTexture_qsv74")
 
 [node name="slot3" parent="inventory/slot_container/VBoxContainer/slots" unique_id=913192253 instance=ExtResource("6_8dubc")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_qsv74")
+icon = SubResource("ViewportTexture_h1mc3")
 
 [node name="slot4" parent="inventory/slot_container/VBoxContainer/slots" unique_id=1527034952 instance=ExtResource("7_6rmj2")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_h1mc3")
+icon = SubResource("ViewportTexture_cof4p")
 
 [node name="slot5" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2137188715 instance=ExtResource("8_vsj0x")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_cof4p")
+icon = SubResource("ViewportTexture_f7tlh")
 
 [node name="slot6" parent="inventory/slot_container/VBoxContainer/slots" unique_id=765997557 instance=ExtResource("9_qsv74")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_f7tlh")
+icon = SubResource("ViewportTexture_8k7j3")
 
 [node name="slot7" parent="inventory/slot_container/VBoxContainer/slots" unique_id=988313523 instance=ExtResource("10_h1mc3")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_8k7j3")
+icon = SubResource("ViewportTexture_jkdwc")
 
 [node name="slot8" parent="inventory/slot_container/VBoxContainer/slots" unique_id=417824350 instance=ExtResource("11_cof4p")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_jkdwc")
+icon = SubResource("ViewportTexture_rlppe")
 
 [node name="slot9" parent="inventory/slot_container/VBoxContainer/slots" unique_id=344328651 instance=ExtResource("12_f7tlh")]
 layout_mode = 2
-icon = SubResource("ViewportTexture_rlppe")
+icon = SubResource("ViewportTexture_ycmcx")
 
 [node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
 layout_mode = 0

@@ -35,11 +35,10 @@ func _process(delta: float) -> void:
 	# open/close inventory
 	if Input.is_action_just_pressed("inventory") and !$head/RayCast3D.talking:
 		toggle_inventory = !toggle_inventory
-		inventory.visible = toggle_inventory
 		if toggle_inventory:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			Inventory.open_inventory()
 		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Inventory.close_inventory()
 	
 	# deplete stamina
 	if SPEED == SPRINT_SPEED and velocity.length() > 0:
@@ -53,6 +52,7 @@ func _process(delta: float) -> void:
 			exhausted = true
 			await get_tree().create_timer(1.0).timeout
 			exhausted = false
+			
 	# restore stamina
 	if (SPEED != SPRINT_SPEED or velocity.length() == 0) and !exhausted:
 		if stamina.value < stamina.max_value:
