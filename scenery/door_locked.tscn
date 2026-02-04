@@ -92,7 +92,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.7
 
 [node name="door_locked" type="StaticBody3D" parent="hinge" unique_id=1673132103]
 transform = Transform3D(1.452619, 0, 0, 0, 2.6240513, 0, 0, 0, 0.1, 0.71693933, 0, 0)
-collision_layer = 19
+collision_layer = 17
 script = ExtResource("2_2xl37")
 
 [node name="item" type="CollisionShape3D" parent="hinge/door_locked" unique_id=1505642299]

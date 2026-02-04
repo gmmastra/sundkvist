@@ -1,51 +1,106 @@
 extends Node
 
+signal item_check
+
 var inv
 var inv_slots
 var inv_sprites := []
 var open = false
+var item_target = ""
+var was_submitted = false
 
 
 func _ready() -> void:
 	inv_slots = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory/slot_container/VBoxContainer/slots")
 	inv = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory")
+	bind_signals()
+
+# connects mouse_events on inventory slots
+func bind_signals():
+	for i in 8:
+		# binds slot clicked signal
+		inv_slots.get_node("slot" + str(i+1)).focus_entered.connect(slot_focus_entered.bind(str(i+1)))
+		#binds slot hovered signal
+		inv_slots.get_node("slot" + str(i+1)).mouse_entered.connect(slot_mouse_entered.bind(str(i+1)))
+		inv_slots.get_node("slot" + str(i+1)).mouse_exited.connect(slot_mouse_exited)
+
+
+
+# handle item use per slot
+func slot_focus_entered(slot_index):
+	# handle use item in dialogue
+	if !inv_slots.get_node("slot" + slot_index).disabled:
+		if get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+			if inv_sprites[int(slot_index) - 1].name == item_target:
+				remove_from_inventory(inv_sprites[int(slot_index) - 1])
+				was_submitted = true
+				
+			item_check.emit()
+		# handle use item out of dialogue
+		else:
+			match slot_index:
+				"1":
+					pass
+				"2":
+					pass
+
+# handle hover text per slot
+func slot_mouse_entered(slot_index):
+	if !inv_slots.get_node("slot" + slot_index).disabled:
+		inv.get_node("item_name").text = inv_sprites[int(slot_index) - 1].name
+		inv.get_node("item_desc").text = inv_sprites[int(slot_index) - 1].description
+
+func slot_mouse_exited():
+	inv.get_node("item_name").text = ""
+	inv.get_node("item_desc").text = ""
+
+
 
 func open_inventory():
 	UiListener.manual_pause(true)
 	inv.visible = true
 	open = true
+	was_submitted = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func close_inventory():
 	inv.visible = false
 	open = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	item_check.emit()
 	UiListener.manual_pause(false)
 
 func add_to_inventory(hit):
-	var mesh = hit.get_node("item/MeshInstance3D").mesh.get_path()
+	var item_mesh = hit.get_node("item/MeshInstance3D").mesh.get_path()
 	PlayerData.inventory[hit.name].picked_up = true
 	PlayerData.inventory[hit.name].item_reference = hit
-	PlayerData.inventory[hit.name].mesh = mesh
+	PlayerData.inventory[hit.name].mesh = item_mesh
 	
 	if inv_sprites.size() <= 8:
-		inv_sprites.append(mesh)
-		add_sprite_to_view(mesh)
-
+		inv_sprites.append(PlayerData.inventory[hit.name])
+		add_sprite_to_view(hit.name)
 
 func remove_from_inventory(hit):
-	var mesh = hit.get_node("item/MeshInstance3D").mesh.get_path()
-	var index= inv_sprites.find(mesh)
+	var index= inv_sprites.find(PlayerData.inventory[hit.name])
 	
 	if index != -1:
 		PlayerData.inventory[hit.name].used = true
 		inv_sprites.remove_at(index)
 		render_array()
 
+# handles item submission
+func query_item(item_name):
+	item_target = item_name
+	open_inventory()
+	await item_check
+	close_inventory()
+	return was_submitted
 
-func add_sprite_to_view(mesh):
+
+func add_sprite_to_view(item_name):
+	var item_mesh = PlayerData.inventory[item_name].mesh
 	inv_slots.get_node("slot" + str(inv_sprites.size())).disabled = false
-	inv_slots.get_node("slot" + str(inv_sprites.size()) + "/SubViewport/MeshInstance3D").mesh = load(mesh)
+	inv_slots.get_node("slot" + str(inv_sprites.size()) + "/SubViewport/MeshInstance3D").mesh = load(item_mesh)
 	inv_slots.get_node("slot" + str(inv_sprites.size()) + "/SubViewport/MeshInstance3D").visible = true
 
 
@@ -58,8 +113,7 @@ func render_array():
 	# clear current inventory sprites
 	for i in 9:
 		remove_sprite_from_view(i + 1)
-	
+		
 	# load in still present inventory sprites
 	for sprite in inv_sprites:
-		add_sprite_to_view(sprite)
-	pass
+		add_sprite_to_view(sprite.name)

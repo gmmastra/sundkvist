@@ -5,9 +5,11 @@ extends Area3D
 @export var dialogue_resource: DialogueResource
 @export var dialogue_start: String = "start"
 
+
 func action() -> void:	
 	# display dialogue	
 	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	ui.get_node("Control/reticle").hide()
 	await DialogueManager.dialogue_ended
 	

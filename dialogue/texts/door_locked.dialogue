@@ -1,10 +1,11 @@
 ~ start
 if !PlayerData.inventory["key"].used:
 	It's locked.
-	do Inventory.open_inventory()
-	if PlayerData.inventory["key"].used:
-		It's unlocked!
+	if Inventory.query_item("key"):
+		do get_node("/root/" + get_tree().current_scene.name + "/door_locked").toggle_door()
+		=> END
 else
-	It's unlocked!
+	do get_node("/root/" + get_tree().current_scene.name + "/door_locked").toggle_door()
+	=> END
 Nothing happened.
 => END

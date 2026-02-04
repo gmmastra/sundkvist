@@ -10,6 +10,11 @@ var inventory:= {
 	"sword": InventoryItem.new()
 }
 
+func _ready() -> void:
+	inventory["key"].name = "key"
+	inventory["key"].description = "could open something..."
+	inventory["sword"].name = "sword"
+	inventory["sword"].description = "what is this for?"
 
 # convert InventoryItems to Dictionaries for json
 func inventory_to_dict() -> Dictionary:

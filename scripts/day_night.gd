@@ -74,3 +74,7 @@ func _day_change_animation():
 
 func _process(_delta: float) -> void:
 	_refresh_day_state()
+	if get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+		animation_player.speed_scale = 0
+	else:
+		animation_player.speed_scale = 1.0 / duration_multiplier
