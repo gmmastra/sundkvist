@@ -6,13 +6,15 @@ func _ready() -> void:
 
 # start new game
 func _on_new_game_pressed() -> void:
-	SceneManager.start()
+	SceneManager.change_scene("res://scenes/town.tscn")
 
 
 # open load menu
 func _on_load_game_pressed() -> void:
-	get_node("default_panel").hide()
-	get_node("load_panel").show()
+	#get_node("default_panel").hide()
+	#get_node("load_panel").show()
+	if PlayerData.load_player_data() == OK:
+		SceneManager.change_scene("res://scenes/town.tscn")
 
 
 # open options menu

@@ -1,7 +1,7 @@
 extends Area3D
 
 @onready var ui := get_tree().current_scene.get_node("UI")
-@onready var player: CharacterBody3D = get_tree().current_scene.get_node("player")
+@onready var player: CharacterBody3D = get_tree().current_scene.get_node("Viewport/game/player")
 @export var dialogue_resource: DialogueResource
 @export var dialogue_start: String = "start"
 

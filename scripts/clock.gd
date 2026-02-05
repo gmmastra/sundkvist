@@ -14,12 +14,12 @@ func _ready() -> void:
 	min_timer.start()
 
 func _on_hour_timer_timeout() -> void:
-	if !get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+	if !get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
 		if hour_hand.rotation < deg_to_rad(89):
 			hour_hand.rotation += deg_to_rad(15)
 		else:
 			hour_timer.stop()
 
 func _on_min_timer_timeout() -> void:
-	if !get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+	if !get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
 		minute_hand.rotation += deg_to_rad(6)

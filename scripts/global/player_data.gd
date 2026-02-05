@@ -25,9 +25,10 @@ func inventory_to_dict() -> Dictionary:
 
 
 func save_player_data() -> void:
+	print("here")
 	var save_data: Dictionary = {
-		KEY_DAY: day,
-		KEY_INVENTORY: inventory_to_dict()
+		"day": day,
+		"inventory": inventory_to_dict()
 	}
 	var err: Error = FileHandler.store_json_file(save_data, save_path_json, true)
 	if err != OK:
@@ -35,23 +36,24 @@ func save_player_data() -> void:
 		
 
 
-func load_player_data() -> void:
+func load_player_data() -> Error:
 	var save_data: Dictionary = {}
 	var err: Error = FileHandler.open_json_file(save_path_json, save_data)
 	if err != OK:
 		push_error("Could not load player data: ", error_string(err))
-		return
+		return err
 	
 	err = verify_save_data(save_data)
 	if err != OK:
 		push_error("Invalid save file structure")
-		return
+		return err
 	
 	# parse back to InventoryItem from json
 	day = save_data[KEY_DAY]
 	inventory.clear()
 	for item_id in save_data["inventory"].keys():
 		inventory[item_id] = InventoryItem.from_dict(save_data["inventory"][item_id])
+	return OK
 
 
 func verify_save_data(save_data: Dictionary) -> Error:

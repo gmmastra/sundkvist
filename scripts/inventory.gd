@@ -30,7 +30,7 @@ func bind_signals():
 func slot_focus_entered(slot_index):
 	# handle use item in dialogue
 	if !inv_slots.get_node("slot" + slot_index).disabled:
-		if get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+		if get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
 			if inv_sprites[int(slot_index) - 1].name == item_target:
 				remove_from_inventory(inv_sprites[int(slot_index) - 1])
 				was_submitted = true
@@ -64,6 +64,7 @@ func open_inventory():
 	open = true
 	was_submitted = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_node("/root/" + get_tree().current_scene.name + "/UI/dim").show()
 
 func close_inventory():
 	inv.visible = false
@@ -71,6 +72,7 @@ func close_inventory():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	item_check.emit()
 	UiListener.manual_pause(false)
+	get_node("/root/" + get_tree().current_scene.name + "/UI/dim").hide()
 
 func add_to_inventory(hit):
 	if inv == null:

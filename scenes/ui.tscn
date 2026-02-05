@@ -114,9 +114,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -64.0
-offset_bottom = 282.9189
+offset_left = -18.0
+offset_top = -85.6819
+offset_right = 3.4053955
+offset_bottom = 378.43915
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.37, 0.37)
@@ -154,6 +155,7 @@ offset_bottom = 60.0
 script = ExtResource("1_nt7q6")
 
 [node name="face" type="Sprite2D" parent="clock" unique_id=1508947]
+scale = Vector2(1.36, 1.36)
 texture = SubResource("GradientTexture2D_nt7q6")
 centered = false
 
@@ -195,10 +197,10 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = -3
+theme_override_constants/line_separation = -6
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "[I]
 
@@ -210,6 +212,7 @@ vertical_alignment = 2
 
 [node name="inventory" type="Control" parent="." unique_id=1370828803]
 visible = false
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -228,17 +231,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="Sprite2D" parent="inventory/background" unique_id=235520259]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(3.6953125, 3.6953125)
 texture = SubResource("GradientTexture2D_gdt2y")
 
 [node name="ColorRect2" type="Sprite2D" parent="inventory/background" unique_id=1830759]
-position = Vector2(-7.6293945e-06, -86)
-scale = Vector2(2.5, 0.20999998)
+position = Vector2(-0.124988556, -128.4855)
+scale = Vector2(3.691407, 0.31007817)
 texture = SubResource("GradientTexture2D_wm3ai")
 
 [node name="ColorRect3" type="Sprite2D" parent="inventory/background" unique_id=227601201]
-position = Vector2(7.6293945e-06, 87)
-scale = Vector2(2.5, 0.20999998)
+position = Vector2(1.9669533e-06, 129)
+scale = Vector2(3.6875002, 0.30975)
 texture = SubResource("GradientTexture2D_wm3ai")
 
 [node name="slot_container" type="PanelContainer" parent="inventory" unique_id=1233720573]
@@ -248,16 +251,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -22.5
-offset_right = 80.0
-offset_bottom = 22.5
+offset_left = -117.64944
+offset_top = -111.0
+offset_right = 117.5827
+offset_bottom = 111.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_p7vwb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="inventory/slot_container" unique_id=51901711]
 layout_mode = 2
+alignment = 1
 
 [node name="slots" type="GridContainer" parent="inventory/slot_container/VBoxContainer" unique_id=783641616]
 layout_direction = 2
@@ -305,27 +309,29 @@ icon = SubResource("ViewportTexture_kupmu")
 
 [node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 29.0
-offset_right = 239.0
-offset_bottom = 41.0
+offset_left = 121.0
+offset_top = 13.0
+offset_right = 311.0
+offset_bottom = 30.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
+text = "name"
 
 [node name="item_desc" type="RichTextLabel" parent="inventory" unique_id=1737961791]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 201.0
-offset_right = 234.0
-offset_bottom = 213.0
+offset_left = 88.0
+offset_top = 270.0
+offset_right = 314.0
+offset_bottom = 285.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
+text = "description"
 
 [node name="pause_menu" type="Control" parent="." unique_id=2077292780]
 visible = false
@@ -337,11 +343,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="options_panel" parent="pause_menu" unique_id=593745071 instance=ExtResource("14_qsv74")]
-visible = false
 layout_mode = 1
 
-[node name="dim" type="ColorRect" parent="pause_menu" unique_id=7798706]
-layout_mode = 1
+[node name="quit" type="Button" parent="pause_menu" unique_id=1951383103]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "QUIT"
+
+[node name="dim" type="ColorRect" parent="." unique_id=7798706]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -373,3 +384,4 @@ transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39
 [connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_hour_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_min_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_timer_timeout"]
+[connection signal="pressed" from="pause_menu/quit" to="." method="_on_quit_pressed"]

@@ -8,7 +8,7 @@ var talking = false
 var talking_cooldown = false
 
 func _ready() -> void:
-	player = get_tree().current_scene.get_node("player")
+	player = get_tree().current_scene.get_node("Viewport/game/player")
 	ui = get_tree().current_scene.get_node("UI")
 
 func _physics_process(_delta: float) -> void:

@@ -4,7 +4,7 @@ extends Node
 var _name := ""
 var description := ""
 var picked_up := false
-var used := false
+var used := true
 var mesh = null
 var item_reference = null
 

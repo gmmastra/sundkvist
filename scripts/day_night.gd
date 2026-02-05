@@ -12,8 +12,9 @@ extends Node3D
 @export var evening_color_top: Color = Color("3d6fcd")
 @export var evening_color_horiz: Color = Color("e98174")
 
-@onready var world_environment: WorldEnvironment = $WorldEnvironment
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var world_environment: WorldEnvironment = $Viewport/game/WorldEnvironment
+@onready var animation_player: AnimationPlayer = $Viewport/game/AnimationPlayer
+@onready var viewport = $Viewport/game
 
 var day_duration = 12
 var dayColorList = [
@@ -23,6 +24,10 @@ var dayColorList = [
 ]
 var current_day_state = 0
 var duration_multiplier = 1
+
+
+func _input(event: InputEvent) -> void:
+	viewport.push_input(event)
 
 func _ready() -> void:
 	_change_duration()
@@ -74,7 +79,7 @@ func _day_change_animation():
 
 func _process(_delta: float) -> void:
 	_refresh_day_state()
-	if get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
+	if $Viewport/game/player/head/RayCast3D.talking:
 		animation_player.speed_scale = 0
 	else:
 		animation_player.speed_scale = 1.0 / duration_multiplier

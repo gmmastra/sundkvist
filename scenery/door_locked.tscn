@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bu4f8kukctt2y"]
 
-[ext_resource type="Script" uid="uid://x412h6p0ccpo" path="res://scenery/door.gd" id="1_t6ew0"]
+[ext_resource type="Script" uid="uid://x412h6p0ccpo" path="res://scripts/door.gd" id="1_t6ew0"]
 [ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://scripts/selectable.gd" id="2_2xl37"]
-[ext_resource type="Script" uid="uid://bdovayvb6jbks" path="res://scenes/actionable.gd" id="3_ek06o"]
+[ext_resource type="Script" uid="uid://bdovayvb6jbks" path="res://scripts/actionable.gd" id="3_ek06o"]
 [ext_resource type="Resource" uid="uid://by5sf56m5pjov" path="res://dialogue/texts/door_locked.dialogue" id="4_wjjg0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jy65v"]
@@ -93,11 +93,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.7
 [node name="door_locked" type="StaticBody3D" parent="hinge" unique_id=1673132103]
 transform = Transform3D(1.452619, 0, 0, 0, 2.6240513, 0, 0, 0, 0.1, 0.71693933, 0, 0)
 collision_layer = 17
-script = ExtResource("2_2xl37")
 
 [node name="item" type="CollisionShape3D" parent="hinge/door_locked" unique_id=1505642299]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_jy65v")
+script = ExtResource("2_2xl37")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="hinge/door_locked/item" unique_id=107935790]
 transform = Transform3D(0.9999999, 0, 2.220446e-16, 0, 0.99999994, 0, 5.684342e-14, 0, 1, 0, 0, 0)

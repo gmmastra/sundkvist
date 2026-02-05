@@ -6,7 +6,7 @@
 
 [sub_resource type="Theme" id="Theme_4pl3l"]
 default_font = ExtResource("1_rayio")
-default_font_size = 15
+default_font_size = 22
 /colors/font_outline_color = Color(0, 0, 0, 1)
 /constants/outline_size = 4
 
@@ -44,10 +44,11 @@ offset_bottom = 40.0
 [node name="logo" type="RichTextLabel" parent="default_panel" unique_id=654586638]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 1
-offset_left = 18.0
-offset_top = 48.0
-offset_right = 218.0
-offset_bottom = 78.0
+offset_left = 20.000002
+offset_top = 55.000008
+offset_right = 220.0
+offset_bottom = 85.00001
+scale = Vector2(1.875, 1.875)
 text = "SUNDKVIST"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="default_panel" unique_id=2087764472]
@@ -56,9 +57,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 18.535
-offset_top = 47.58
-offset_right = 94.535
-offset_bottom = 155.58006
+offset_top = 80.55
+offset_right = 216.535
+offset_bottom = 184.55
 grow_vertical = 0
 theme = SubResource("Theme_4pl3l")
 

@@ -19,7 +19,7 @@ icon = SubResource("ViewportTexture_gcici")
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1509017652]
 own_world_3d = true
 transparent_bg = true
-size = Vector2i(35, 35)
+size = Vector2i(50, 50)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=1770861067]
 visible = false
