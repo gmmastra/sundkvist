@@ -1,17 +1,21 @@
 extends RayCast3D
 
 signal interact_object
-@onready var player: CharacterBody3D = get_tree().current_scene.get_node("player")
-@onready var ui := get_tree().current_scene.get_node("UI")
+var player
+var ui
 
 var talking = false
 var talking_cooldown = false
+
+func _ready() -> void:
+	player = get_tree().current_scene.get_node("player")
+	ui = get_tree().current_scene.get_node("UI")
 
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var hit = get_collider()
 		interact_object.emit(hit)
-		print(hit.get_collision_layer())
+		
 		# pickup item
 		if hit.get_collision_layer() != null and hit.get_collision_layer() == 129:
 			if Input.is_action_just_pressed("interact"):

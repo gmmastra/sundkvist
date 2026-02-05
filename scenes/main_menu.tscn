@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c4q2g3gt7uk1e"]
+
+[ext_resource type="PackedScene" uid="uid://do1vmkff5d5py" path="res://scenes/main_menu_ui.tscn" id="1_l6cm7"]
+
+[node name="main_menu" type="Node3D" unique_id=1123371788]
+
+[node name="main_menu_ui" parent="." unique_id=113195690 instance=ExtResource("1_l6cm7")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2113625133]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=786079960]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1838034659]

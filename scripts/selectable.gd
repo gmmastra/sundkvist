@@ -8,7 +8,7 @@ var hide_outline = false
 var outline_width = 0.05
 
 func _ready() -> void:
-	get_tree().current_scene.get_node("player/head/RayCast3D").interact_object.connect(_set_selected)
+	get_tree().current_scene.get_node("/SubViewPortContainer/SubViewport/level/player/head/RayCast3D").interact_object.connect(_set_selected)
 	outline_mesh.visible = false
 
 

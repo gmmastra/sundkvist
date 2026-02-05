@@ -9,8 +9,8 @@ var open = false
 var item_target = ""
 var was_submitted = false
 
-
-func _ready() -> void:
+# bind paths at main scene runtime
+func bind_variables():
 	inv_slots = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory/slot_container/VBoxContainer/slots")
 	inv = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory")
 	bind_signals()
@@ -57,6 +57,8 @@ func slot_mouse_exited():
 
 
 func open_inventory():
+	if inv == null:
+		bind_variables()
 	UiListener.manual_pause(true)
 	inv.visible = true
 	open = true
@@ -71,6 +73,8 @@ func close_inventory():
 	UiListener.manual_pause(false)
 
 func add_to_inventory(hit):
+	if inv == null:
+		bind_variables()
 	var item_mesh = hit.get_node("item/MeshInstance3D").mesh.get_path()
 	PlayerData.inventory[hit.name].picked_up = true
 	PlayerData.inventory[hit.name].item_reference = hit
@@ -81,6 +85,8 @@ func add_to_inventory(hit):
 		add_sprite_to_view(hit.name)
 
 func remove_from_inventory(hit):
+	if inv == null:
+		bind_variables()
 	var index= inv_sprites.find(PlayerData.inventory[hit.name])
 	
 	if index != -1:

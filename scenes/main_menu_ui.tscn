@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://do1vmkff5d5py"]
+
+[ext_resource type="Script" uid="uid://nq2dat8n562a" path="res://scripts/main_menu.gd" id="1_4pl3l"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rayio"]
+[ext_resource type="PackedScene" uid="uid://cmfdiok30vc0j" path="res://scenes/options_panel.tscn" id="3_rpghy"]
+
+[sub_resource type="Theme" id="Theme_4pl3l"]
+default_font = ExtResource("1_rayio")
+default_font_size = 15
+/colors/font_outline_color = Color(0, 0, 0, 1)
+/constants/outline_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rayio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpghy"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 2.0
+expand_margin_right = 30.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pl3l"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 2.0
+expand_margin_right = 30.0
+expand_margin_bottom = 2.0
+
+[node name="main_menu_ui" type="Control" unique_id=113195690]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pl3l")
+
+[node name="default_panel" type="Control" parent="." unique_id=140742652]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="logo" type="RichTextLabel" parent="default_panel" unique_id=654586638]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+offset_left = 18.0
+offset_top = 48.0
+offset_right = 218.0
+offset_bottom = 78.0
+text = "SUNDKVIST"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="default_panel" unique_id=2087764472]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.535
+offset_top = 47.58
+offset_right = 94.535
+offset_bottom = 155.58006
+grow_vertical = 0
+theme = SubResource("Theme_4pl3l")
+
+[node name="new_game" type="Button" parent="default_panel/VBoxContainer" unique_id=1860073648]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rayio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rpghy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4pl3l")
+text = "NEW GAME"
+alignment = 0
+
+[node name="load_game" type="Button" parent="default_panel/VBoxContainer" unique_id=1417445652]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rayio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rpghy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4pl3l")
+text = "LOAD GAME"
+alignment = 0
+
+[node name="options" type="Button" parent="default_panel/VBoxContainer" unique_id=986684170]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rayio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rpghy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4pl3l")
+text = "OPTIONS"
+alignment = 0
+
+[node name="exit" type="Button" parent="default_panel/VBoxContainer" unique_id=216922715]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rayio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rpghy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4pl3l")
+text = "EXIT"
+alignment = 0
+
+[node name="load_panel" type="Control" parent="." unique_id=693108299]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="load_panel" unique_id=1906168984]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -91.5
+offset_right = 123.0
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.669)
+
+[node name="options_panel" parent="." unique_id=593745071 instance=ExtResource("3_rpghy")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="default_panel/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="default_panel/VBoxContainer/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="default_panel/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="default_panel/VBoxContainer/exit" to="." method="_on_exit_pressed"]

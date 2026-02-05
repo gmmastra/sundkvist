@@ -4,19 +4,21 @@ var paused = false
 
 func _process(_delta: float) -> void:
 	# handles pause menu
-	if Input.is_action_just_pressed("pause_menu") and !Inventory.open:
+	if Input.is_action_just_pressed("pause_menu") and !Inventory.open and get_tree().current_scene.name == "level":
 		if paused:
 			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			get_node("/root/" + get_tree().current_scene.name + "/UI/pause_menu").hide()
 		else:
 			get_tree().paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			get_node("/root/" + get_tree().current_scene.name + "/UI/pause_menu").show()
 		paused = !paused
 
 	# handles inventory pause
 	if Input.is_action_just_pressed("inventory"):
 		if Inventory.open:
 			Inventory.close_inventory()
-		elif !get_node("/root/" + get_tree().current_scene.name + "/player/head/RayCast3D").talking:
-			Inventory.open_inventory()
 		paused = !paused
 
 

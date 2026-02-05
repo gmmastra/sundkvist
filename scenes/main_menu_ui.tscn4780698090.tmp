@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://do1vmkff5d5py"]
+
+[ext_resource type="Script" uid="uid://nq2dat8n562a" path="res://scripts/main_menu.gd" id="1_4pl3l"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rayio"]
+
+[sub_resource type="Theme" id="Theme_4pl3l"]
+default_font = ExtResource("1_rayio")
+default_font_size = 15
+/colors/font_outline_color = Color(0, 0, 0, 1)
+/constants/outline_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rayio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pl3l"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="main_menu_ui" type="Control" unique_id=113195690]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pl3l")
+
+[node name="logo" type="RichTextLabel" parent="." unique_id=654586638]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 1
+offset_left = 18.0
+offset_top = 48.0
+offset_right = 218.0
+offset_bottom = 78.0
+text = "SUNDKVIST"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2087764472]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.535
+offset_top = -152.42
+offset_right = 94.535
+offset_bottom = -44.419937
+grow_vertical = 0
+theme = SubResource("Theme_4pl3l")
+
+[node name="new_game" type="Button" parent="VBoxContainer" unique_id=1860073648]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rayio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4pl3l")
+text = "NEW GAME"
+
+[node name="load_game" type="Button" parent="VBoxContainer" unique_id=63819295]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+text = "LOAD GAME"
+
+[node name="options" type="Button" parent="VBoxContainer" unique_id=269011232]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+text = "OPTIONS"
+
+[node name="exit" type="Button" parent="VBoxContainer" unique_id=1891501583]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+text = "EXIT"
+
+[connection signal="mouse_entered" from="VBoxContainer/new_game" to="." method="_on_new_game_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/new_game" to="." method="_on_new_game_mouse_exited"]
