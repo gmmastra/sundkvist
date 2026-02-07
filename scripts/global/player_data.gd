@@ -1,7 +1,8 @@
 extends Node
 var save_path_json: String = "user://save_files/savegame.json"
 
-var spawn = Vector3(0,1.5,0)
+var spawn = Vector3(5,1.5,0)
+var location = "town"
 
 var day: int = 1
 var inventory_items:= {
@@ -12,10 +13,7 @@ var inventory_items:= {
 var held_inventory:= []
 
 func _ready() -> void:
-	inventory_items["key"].name = "key"
-	inventory_items["key"].description = "could open something..."
-	inventory_items["sword"].name = "sword"
-	inventory_items["sword"].description = "what is this for?"
+	clear_data()
 
 # convert InventoryItems to Dictionaries for json
 func inventory_items_to_dict() -> Dictionary:
@@ -27,9 +25,11 @@ func inventory_items_to_dict() -> Dictionary:
 
 func save_player_data() -> void:
 	print("Game saved.")
+	print(get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player").global_position)
 	var save_data: Dictionary = {
 		"day": day,
-		"spawn": spawn,
+		"spawn": get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player").global_position,
+		"location": location,
 		"held_inventory": held_inventory,
 		"inventory_items": inventory_items_to_dict()
 	}
@@ -55,9 +55,8 @@ func load_player_data() -> Error:
 	day = save_data["day"]
 	var spawn_vec = save_data["spawn"].replace("(", "").replace(")", "").split(",")
 	spawn = Vector3(int(spawn_vec[0]), int(spawn_vec[1]), int(spawn_vec[2]))
+	location = save_data["location"]
 	held_inventory = save_data["held_inventory"]
-	print(held_inventory)
-	
 	inventory_items.clear()
 	for item_id in save_data["inventory_items"].keys():
 		inventory_items[item_id] = InventoryItem.from_dict(save_data["inventory_items"][item_id])
@@ -69,6 +68,26 @@ func verify_save_data(save_data: Dictionary) -> Error:
 		return ERR_DOES_NOT_EXIST
 	if !save_data.has("spawn"):
 		return ERR_DOES_NOT_EXIST
+	if !save_data.has("location"):
+		return ERR_DOES_NOT_EXIST
+	if !save_data.has("held_inventory"):
+		return ERR_DOES_NOT_EXIST
 	if !save_data.has("inventory_items"):
 		return ERR_DOES_NOT_EXIST
 	return OK
+
+# resets player information
+func clear_data():
+	day = 1
+	spawn = Vector3(5,1.5,0)
+	location = "town"
+	held_inventory = []
+	Inventory.inv_sprites = []
+	inventory_items = {
+		"key": InventoryItem.new(),
+		"sword": InventoryItem.new()
+	}
+	inventory_items["key"].name = "key"
+	inventory_items["key"].description = "could open something..."
+	inventory_items["sword"].name = "sword"
+	inventory_items["sword"].description = "what is this for?"

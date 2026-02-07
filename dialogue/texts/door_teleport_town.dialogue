@@ -1,4 +1,5 @@
 ~ start
 do PlayerData.spawn = Vector3(-5, 1.5, 0)
+do PlayerData.location = "town"
 do SceneManager.change_scene("res://scenes/town.tscn")
 => END

@@ -133,7 +133,7 @@ shadow_enabled = true
 environment = SubResource("Environment_mx8sn")
 
 [node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("4_i0mj0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
