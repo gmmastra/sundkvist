@@ -1,5 +1,5 @@
 ~ start
-if !PlayerData.inventory["key"].used:
+if !PlayerData.inventory_items["key"].used:
 	It's locked.
 	if Inventory.query_item("key"):
 		do get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/door_locked").toggle_door()

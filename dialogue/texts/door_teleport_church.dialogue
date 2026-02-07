@@ -1,0 +1,4 @@
+~ start
+do PlayerData.spawn = Vector3(0, 1.5, 0)
+do SceneManager.change_scene("res://scenes/church.tscn")
+=> END

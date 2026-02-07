@@ -4,9 +4,9 @@ extends Node
 var _name := ""
 var description := ""
 var picked_up := false
-var used := true
+var used := false
 var mesh = null
-var item_reference = null
+var inv_slot = 0
 
 func to_dict() -> Dictionary:
 	return {
@@ -15,7 +15,7 @@ func to_dict() -> Dictionary:
 		"picked_up": picked_up,
 		"used": used,
 		"mesh": mesh,
-		"item_reference": item_reference
+		"inv_slot": inv_slot
 	}
 
 static func from_dict(data: Dictionary) -> InventoryItem:
@@ -25,5 +25,5 @@ static func from_dict(data: Dictionary) -> InventoryItem:
 	item.picked_up = data.get("picked_up")
 	item.used = data.get("used")
 	item.mesh = data.get("mesh")
-	item.item_reference = data.get("item_reference")
+	item.inv_slot = data.get("inv_slot")
 	return item

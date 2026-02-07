@@ -4,6 +4,9 @@ var paused = false
 
 func _process(_delta: float) -> void:
 	
+	if Input.is_action_just_pressed("map") and !Inventory.open and get_tree().current_scene.name == "level":
+		PlayerData.save_player_data()
+	
 	# handles pause menu
 	if Input.is_action_just_pressed("pause_menu") and !Inventory.open and get_tree().current_scene.name == "level":
 		if paused:

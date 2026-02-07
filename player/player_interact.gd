@@ -20,8 +20,6 @@ func _physics_process(_delta: float) -> void:
 		if hit.get_collision_layer() != null and hit.get_collision_layer() == 129:
 			if Input.is_action_just_pressed("interact"):
 				Inventory.add_to_inventory(hit)
-				hit.hide()
-				hit.get_node("item").disabled = true
 			
 		# interactable npc/item with dialogue
 		if hit.get_collision_layer() != null and hit.get_collision_layer() == 17:

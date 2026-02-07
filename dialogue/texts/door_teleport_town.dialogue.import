@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dfpn7biclsm7w"
+path="res://.godot/imported/door_teleport_town.dialogue-f073c42484c97a9e75c62e0510c20203.tres"
+
+[deps]
+
+source_file="res://dialogue/texts/door_teleport_town.dialogue"
+dest_files=["res://.godot/imported/door_teleport_town.dialogue-f073c42484c97a9e75c62e0510c20203.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://x7wkl3i6gcoy"
+path="res://.godot/imported/door_teleport_church.dialogue-e5523ab9c0f45ab378e4125049112bfc.tres"
+
+[deps]
+
+source_file="res://dialogue/texts/door_teleport_church.dialogue"
+dest_files=["res://.godot/imported/door_teleport_church.dialogue-e5523ab9c0f45ab378e4125049112bfc.tres"]
+
+[params]
+
+defaults=true

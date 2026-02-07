@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cuc4vja0ql7cu"]
+
+[ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_d4fj4"]
+[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_s731n"]
+[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_q2xmn"]
+[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_bdwpd"]
+[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_g2eii"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w8frs"]
+sky_material = SubResource("ProceduralSkyMaterial_w7c3h")
+
+[sub_resource type="Environment" id="Environment_mx8sn"]
+background_mode = 2
+sky = SubResource("Sky_w8frs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
+albedo_texture = ExtResource("4_bdwpd")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rd3vj"]
+
+[sub_resource type="Animation" id="Animation_8c41q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Viewport/game/DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_olg7q"]
+resource_name = "day_night"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Viewport/game/DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.1415927, 0, 0), Vector3(6.2831855, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t1rx8"]
+_data = {
+&"RESET": SubResource("Animation_8c41q"),
+&"day_night": SubResource("Animation_olg7q")
+}
+
+[node name="level" type="Node3D" unique_id=363311239]
+script = ExtResource("1_d4fj4")
+
+[node name="UI" parent="." unique_id=955173854 instance=ExtResource("2_s731n")]
+
+[node name="Viewport" type="SubViewportContainer" parent="." unique_id=202259770]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+stretch_shrink = 2
+mouse_target = true
+
+[node name="game" type="SubViewport" parent="Viewport" unique_id=2087311408]
+handle_input_locally = false
+audio_listener_enable_3d = true
+size = Vector2i(200, 150)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport/game" unique_id=601602552]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 6.0886064, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/game" unique_id=656021149]
+environment = SubResource("Environment_mx8sn")
+
+[node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_q2xmn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_w7c3h")
+mesh = SubResource("BoxMesh_rd3vj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Viewport/game/floor" unique_id=236405721]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/floor/StaticBody3D" unique_id=1695554897]
+shape = SubResource("BoxShape3D_rd3vj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Viewport/game" unique_id=1237449746]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_t1rx8")
+
+[node name="door" parent="." unique_id=1176906371 instance=ExtResource("5_g2eii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.251034, 1.909301, 0)

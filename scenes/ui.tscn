@@ -380,8 +380,8 @@ size = 2.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1873187784]
 transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39890912, 0, 1.7625611, 1.1171428)
 
-[connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_timer_timeout"]
 [connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_hour_timer_timeout"]
+[connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_min_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_timer_timeout"]
 [connection signal="pressed" from="pause_menu/quit" to="." method="_on_quit_pressed"]

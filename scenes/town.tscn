@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://syasms7k50d7" path="res://dialogue/texts/test.dialogue" id="13_qflhy"]
 [ext_resource type="Script" uid="uid://xlwhi3bxin4n" path="res://scripts/spawn_manager.gd" id="14_b0eaf"]
 [ext_resource type="PackedScene" uid="uid://3fxyk6leimp0" path="res://inventory/items/key.tscn" id="14_f72b0"]
+[ext_resource type="PackedScene" uid="uid://cxgdhi04mr3wo" path="res://scenery/door_teleport_church.tscn" id="15_b00ts"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -132,7 +133,7 @@ shadow_enabled = true
 environment = SubResource("Environment_mx8sn")
 
 [node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("4_i0mj0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5723215, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
@@ -207,6 +208,10 @@ libraries/ = SubResource("AnimationLibrary_t1rx8")
 [node name="key" parent="Viewport/game" unique_id=1549143667 instance=ExtResource("14_f72b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7362108, -2.9614868)
 collision_layer = 129
+script = ExtResource("7_uutfq")
+
+[node name="door" parent="Viewport/game" unique_id=1499032951 instance=ExtResource("15_b00ts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0588374, 1.9314582, 0)
 
 [node name="spawn_manager" type="Node3D" parent="." unique_id=850142671]
 script = ExtResource("14_b0eaf")

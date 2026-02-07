@@ -13,6 +13,7 @@ var was_submitted = false
 func bind_variables():
 	inv_slots = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory/slot_container/VBoxContainer/slots")
 	inv = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory")
+	load_inventory()
 	bind_signals()
 
 # connects mouse_events on inventory slots
@@ -31,7 +32,7 @@ func slot_focus_entered(slot_index):
 	# handle use item in dialogue
 	if !inv_slots.get_node("slot" + slot_index).disabled:
 		if get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
-			if inv_sprites[int(slot_index) - 1].name == item_target:
+			if inv_sprites[int(slot_index) - 1]._name == item_target:
 				remove_from_inventory(inv_sprites[int(slot_index) - 1])
 				was_submitted = true
 				
@@ -47,7 +48,7 @@ func slot_focus_entered(slot_index):
 # handle hover text per slot
 func slot_mouse_entered(slot_index):
 	if !inv_slots.get_node("slot" + slot_index).disabled:
-		inv.get_node("item_name").text = inv_sprites[int(slot_index) - 1].name
+		inv.get_node("item_name").text = inv_sprites[int(slot_index) - 1]._name
 		inv.get_node("item_desc").text = inv_sprites[int(slot_index) - 1].description
 
 func slot_mouse_exited():
@@ -78,22 +79,26 @@ func add_to_inventory(hit):
 	if inv == null:
 		bind_variables()
 	var item_mesh = hit.get_node("item/MeshInstance3D").mesh.get_path()
-	PlayerData.inventory[hit.name].picked_up = true
-	PlayerData.inventory[hit.name].item_reference = hit
-	PlayerData.inventory[hit.name].mesh = item_mesh
+	PlayerData.inventory_items[hit.name].picked_up = true
+	PlayerData.inventory_items[hit.name]._name = hit.name
+	PlayerData.inventory_items[hit.name].mesh = item_mesh
 	
-	if inv_sprites.size() <= 8:
-		inv_sprites.append(PlayerData.inventory[hit.name])
-		add_sprite_to_view(hit.name)
+	inv_sprites.append(PlayerData.inventory_items[hit.name])
+	PlayerData.held_inventory.append(hit.name)
+	add_sprite_to_view(hit.name)
+	hit.queue_free()
 
 func remove_from_inventory(hit):
 	if inv == null:
 		bind_variables()
-	var index= inv_sprites.find(PlayerData.inventory[hit.name])
+	var index = inv_sprites.find(PlayerData.inventory_items[hit._name])
+	var held_index = PlayerData.held_inventory.find(hit._name)
 	
 	if index != -1:
-		PlayerData.inventory[hit.name].used = true
+		PlayerData.inventory_items[hit._name].used = true
+		PlayerData.held_inventory.remove_at(held_index)
 		inv_sprites.remove_at(index)
+		
 		render_array()
 
 # handles item submission
@@ -106,15 +111,23 @@ func query_item(item_name):
 
 
 func add_sprite_to_view(item_name):
-	var item_mesh = PlayerData.inventory[item_name].mesh
-	inv_slots.get_node("slot" + str(inv_sprites.size())).disabled = false
-	inv_slots.get_node("slot" + str(inv_sprites.size()) + "/SubViewport/MeshInstance3D").mesh = load(item_mesh)
-	inv_slots.get_node("slot" + str(inv_sprites.size()) + "/SubViewport/MeshInstance3D").visible = true
+	var item_mesh = PlayerData.inventory_items[item_name].mesh
+	var held_index = PlayerData.held_inventory.find(item_name) + 1
+	inv_slots.get_node("slot" + str(held_index)).disabled = false
+	inv_slots.get_node("slot" + str(held_index) + "/SubViewport/MeshInstance3D").mesh = load(item_mesh)
+	inv_slots.get_node("slot" + str(held_index) + "/SubViewport/MeshInstance3D").visible = true
 
 
 func remove_sprite_from_view(index):
 	inv_slots.get_node("slot" + str(index)).disabled = true
 	inv_slots.get_node("slot" + str(index) + "/SubViewport/MeshInstance3D").visible = false
+
+
+func load_inventory():
+	for item in PlayerData.held_inventory:
+		inv_sprites.append(PlayerData.inventory_items[item])
+	print(inv_sprites)
+	render_array()
 
 
 func render_array():
@@ -124,4 +137,4 @@ func render_array():
 		
 	# load in still present inventory sprites
 	for sprite in inv_sprites:
-		add_sprite_to_view(sprite.name)
+		add_sprite_to_view(sprite._name)

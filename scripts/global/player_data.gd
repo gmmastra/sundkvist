@@ -1,34 +1,37 @@
 extends Node
 var save_path_json: String = "user://save_files/savegame.json"
 
-const KEY_DAY: String = "day"
-const KEY_INVENTORY: String = "inventory"
+var spawn = Vector3(0,1.5,0)
 
 var day: int = 1
-var inventory:= {
+var inventory_items:= {
 	"key": InventoryItem.new(),
 	"sword": InventoryItem.new()
 }
 
+var held_inventory:= []
+
 func _ready() -> void:
-	inventory["key"].name = "key"
-	inventory["key"].description = "could open something..."
-	inventory["sword"].name = "sword"
-	inventory["sword"].description = "what is this for?"
+	inventory_items["key"].name = "key"
+	inventory_items["key"].description = "could open something..."
+	inventory_items["sword"].name = "sword"
+	inventory_items["sword"].description = "what is this for?"
 
 # convert InventoryItems to Dictionaries for json
-func inventory_to_dict() -> Dictionary:
+func inventory_items_to_dict() -> Dictionary:
 	var result := {}
-	for item_id in inventory.keys():
-		result[item_id] = inventory[item_id].to_dict()
+	for item_id in inventory_items.keys():
+		result[item_id] = inventory_items[item_id].to_dict()
 	return result
 
 
 func save_player_data() -> void:
-	print("here")
+	print("Game saved.")
 	var save_data: Dictionary = {
 		"day": day,
-		"inventory": inventory_to_dict()
+		"spawn": spawn,
+		"held_inventory": held_inventory,
+		"inventory_items": inventory_items_to_dict()
 	}
 	var err: Error = FileHandler.store_json_file(save_data, save_path_json, true)
 	if err != OK:
@@ -48,17 +51,24 @@ func load_player_data() -> Error:
 		push_error("Invalid save file structure")
 		return err
 	
-	# parse back to InventoryItem from json
-	day = save_data[KEY_DAY]
-	inventory.clear()
-	for item_id in save_data["inventory"].keys():
-		inventory[item_id] = InventoryItem.from_dict(save_data["inventory"][item_id])
+	# parse back variables from json
+	day = save_data["day"]
+	var spawn_vec = save_data["spawn"].replace("(", "").replace(")", "").split(",")
+	spawn = Vector3(int(spawn_vec[0]), int(spawn_vec[1]), int(spawn_vec[2]))
+	held_inventory = save_data["held_inventory"]
+	print(held_inventory)
+	
+	inventory_items.clear()
+	for item_id in save_data["inventory_items"].keys():
+		inventory_items[item_id] = InventoryItem.from_dict(save_data["inventory_items"][item_id])
 	return OK
 
 
 func verify_save_data(save_data: Dictionary) -> Error:
-	if !save_data.has(KEY_DAY):
+	if !save_data.has("day"):
 		return ERR_DOES_NOT_EXIST
-	if !save_data.has(KEY_INVENTORY):
+	if !save_data.has("spawn"):
+		return ERR_DOES_NOT_EXIST
+	if !save_data.has("inventory_items"):
 		return ERR_DOES_NOT_EXIST
 	return OK

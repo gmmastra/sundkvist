@@ -11,3 +11,8 @@ func _ready() -> void:
 
 func change_scene(scene_path) -> void:
 	get_tree().change_scene_to_file(scene_path)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if get_tree().current_scene.name != "main_menu":
+		get_tree().current_scene.get_node("Viewport/game/player").global_transform.origin = PlayerData.spawn
+		#get_tree().current_scene.get_node("Viewport/game/player").look_at(Vector3(0, 1.5, 0))
