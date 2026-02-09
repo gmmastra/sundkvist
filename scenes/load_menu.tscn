@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://hbpovsgugjtu"]
+
+[ext_resource type="Script" uid="uid://d1ng3ai4dvt38" path="res://scripts/ui/load_menu.gd" id="1_ff44e"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rvg4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1ygq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnhyc"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tv1f"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvg4c"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ff44e"]
+content_margin_left = 2.0
+
+[sub_resource type="Theme" id="Theme_rvg4c"]
+default_font = ExtResource("1_rvg4c")
+default_font_size = 15
+/fonts/font = ExtResource("1_rvg4c")
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_o1ygq")
+Button/styles/normal = SubResource("StyleBoxFlat_xnhyc")
+Button/styles/pressed = SubResource("StyleBoxFlat_8tv1f")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rvg4c")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_ff44e")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvg4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff44e"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o70tx"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="LoadMenu" type="CanvasLayer" unique_id=219218190]
+script = ExtResource("1_ff44e")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=464961776]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rvg4c")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1078507242]
+z_index = 1
+layout_mode = 2
+
+[node name="close" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2138300914]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rvg4c")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rvg4c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ff44e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o70tx")
+text = "◀ back"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=227655668]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rvg4c")
+text = "LOAD"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=308801123]
+layout_mode = 2
+
+[node name="Control" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=2099424470]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control" unique_id=883016622]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="save_slots" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=1126567733]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1952140916]
+custom_minimum_size = Vector2(350, 250)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -118.0
+offset_right = 150.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/close" to="." method="_on_close_pressed"]

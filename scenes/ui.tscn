@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8vwe2cwmrdoh"]
 
-[ext_resource type="Script" uid="uid://dnf6fcr0pulj2" path="res://scripts/clock.gd" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://dnf6fcr0pulj2" path="res://scripts/ui/clock.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://cfaknnwy5kgvv" path="res://scripts/global/ui_listener.gd" id="1_vsj0x"]
 [ext_resource type="Shader" uid="uid://dmm14mushcw2b" path="res://shaders/reticle.gdshader" id="1_x4jx1"]
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="3_yev5y"]
@@ -104,7 +104,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="UI" type="CanvasLayer" unique_id=1880132005]
 process_mode = 3
-layer = 100
+layer = 5
 script = ExtResource("1_vsj0x")
 
 [node name="stamina" type="VSlider" parent="." unique_id=258750285]
@@ -318,7 +318,6 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "name"
 
 [node name="item_desc" type="RichTextLabel" parent="inventory" unique_id=1737961791]
 layout_mode = 0
@@ -331,7 +330,6 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "description"
 
 [node name="pause_menu" type="Control" parent="." unique_id=2077292780]
 visible = false

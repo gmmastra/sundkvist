@@ -111,7 +111,6 @@ func query_item(item_name):
 
 
 func add_sprite_to_view(item_name):
-	print(inv_sprites)
 	var item_mesh = PlayerData.inventory_items[item_name].mesh
 	var held_index = PlayerData.held_inventory.find(item_name) + 1
 	inv_slots.get_node("slot" + str(held_index)).disabled = false

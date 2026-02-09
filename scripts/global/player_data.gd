@@ -1,5 +1,5 @@
 extends Node
-var save_path_json: String = "user://save_files/savegame.json"
+var save_path: String = "user://save_files/"
 
 var spawn = Vector3(5,1.5,0)
 var location = "town"
@@ -25,7 +25,6 @@ func inventory_items_to_dict() -> Dictionary:
 
 func save_player_data() -> void:
 	print("Game saved.")
-	print(get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player").global_position)
 	var save_data: Dictionary = {
 		"day": day,
 		"spawn": get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player").global_position,
@@ -33,15 +32,16 @@ func save_player_data() -> void:
 		"held_inventory": held_inventory,
 		"inventory_items": inventory_items_to_dict()
 	}
-	var err: Error = FileHandler.store_json_file(save_data, save_path_json, true)
+	var save_name = Time.get_datetime_string_from_system().replace("T", "_").replace(":", "-")
+	var err: Error = FileHandler.store_json_file(save_data, save_path + save_name + ".json", true)
 	if err != OK:
 		push_error("Could not save player data: ", error_string(err))
 		
 
 
-func load_player_data() -> Error:
+func load_player_data(save_slot) -> Error:
 	var save_data: Dictionary = {}
-	var err: Error = FileHandler.open_json_file(save_path_json, save_data)
+	var err: Error = FileHandler.open_json_file(save_path + save_slot, save_data)
 	if err != OK:
 		push_error("Could not load player data: ", error_string(err))
 		return err

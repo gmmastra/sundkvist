@@ -72,3 +72,12 @@ static func _check_and_create_directory(file_path: String, create: bool) -> Erro
 		return ERR_CANT_CREATE
 		
 	return DirAccess.make_dir_recursive_absolute(dir_path)
+
+
+static func get_files_in_folder(path: String):
+	if !DirAccess.dir_exists_absolute(path):
+		printerr("Directory does not exist: ", path)
+		return []
+	
+	var file_names := DirAccess.get_files_at(path)
+	return file_names

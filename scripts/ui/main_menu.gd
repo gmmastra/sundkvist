@@ -3,6 +3,7 @@ extends Node
 
 func _ready() -> void:
 	get_node("options_panel/ColorRect/close").pressed.connect(_on_options_close_pressed)
+	get_node("LoadMenu/MarginContainer/VBoxContainer/close").pressed.connect(_on_load_close_pressed)
 
 # start new game
 func _on_new_game_pressed() -> void:
@@ -11,23 +12,24 @@ func _on_new_game_pressed() -> void:
 
 # open load menu
 func _on_load_game_pressed() -> void:
-	#get_node("default_panel").hide()
-	#get_node("load_panel").show()
-	if PlayerData.load_player_data() == OK:
-		SceneManager.change_scene("res://scenes/" + PlayerData.location + ".tscn")
+	$LoadMenu.show()
+	$default_panel.hide()
+
+func _on_load_close_pressed() -> void:
+	$LoadMenu.hide()
+	$default_panel.show()
 
 
 # open options menu
 func _on_options_pressed() -> void:
-	get_node("default_panel").hide()
-	get_node("options_panel").show()
+	$default_panel.hide()
+	$options_panel.show()
+
+func _on_options_close_pressed() -> void:
+	$options_panel.hide()
+	$default_panel.show()
 
 
 # exit game
 func _on_exit_pressed() -> void:
 	get_tree().quit()
-
-
-func _on_options_close_pressed() -> void:
-	get_node("options_panel").hide()
-	get_node("default_panel").show()

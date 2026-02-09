@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://do1vmkff5d5py"]
 
-[ext_resource type="Script" uid="uid://nq2dat8n562a" path="res://scripts/ui/main_menu.gd" id="1_4pl3l"]
+[ext_resource type="Script" uid="uid://nq2dat8n562a" path="res://scripts/main_menu.gd" id="1_4pl3l"]
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rayio"]
 [ext_resource type="PackedScene" uid="uid://cmfdiok30vc0j" path="res://scenes/options_panel.tscn" id="3_rpghy"]
 [ext_resource type="PackedScene" uid="uid://hbpovsgugjtu" path="res://scenes/load_menu.tscn" id="4_towyk"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmfdiok30vc0j"]
 
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_npixg"]
-[ext_resource type="Script" uid="uid://dkjph0o6pi4jr" path="res://scripts/options.gd" id="1_ofg22"]
+[ext_resource type="Script" uid="uid://dkjph0o6pi4jr" path="res://scripts/ui/options.gd" id="1_ofg22"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pl3l"]
 
@@ -138,7 +138,7 @@ offset_right = 168.44263
 offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.669)
+color = Color(0, 0, 0, 0.5)
 
 [node name="close" type="Button" parent="ColorRect" unique_id=294952106]
 layout_mode = 1
