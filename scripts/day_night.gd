@@ -3,14 +3,14 @@ extends Node3D
 @export var start_time = 0
 @export var day_length:int = 12
 
-@export var morning_color_top: Color = Color("8eb9fd")
-@export var morning_color_horiz: Color = Color("d3916b")
+@export var morning_color_top: Color = Color("cde9ef")
+@export var morning_color_horiz: Color = Color("fbc495")
 
-@export var day_color_top: Color = Color("d4e5fe")
-@export var day_color_horiz: Color = Color("8eb9fd")
+@export var day_color_top: Color = Color("f1f9fd")
+@export var day_color_horiz: Color = Color("addae3")
 
-@export var evening_color_top: Color = Color("3d6fcd")
-@export var evening_color_horiz: Color = Color("e98174")
+@export var evening_color_top: Color = Color("a7d6f1")
+@export var evening_color_horiz: Color = Color("fbafc6")
 
 @onready var world_environment: WorldEnvironment = $Viewport/game/WorldEnvironment
 @onready var animation_player: AnimationPlayer = $Viewport/game/AnimationPlayer
@@ -69,13 +69,13 @@ func _day_change_animation():
 	
 	var duration = duration_multiplier
 	
-	tween.tween_property(world_environment, "environment:sky:sky_material:sky_top_color", top_color, duration)
+	tween.tween_property(world_environment, "environment:sky:sky_material:shader_parameter/sky_top_color", top_color, duration)
 	tween.parallel()
-	tween.tween_property(world_environment, "environment:sky:sky_material:sky_horizon_color", horizon_color, duration)
+	tween.tween_property(world_environment, "environment:sky:sky_material:shader_parameter/sky_horizon_color", horizon_color, duration)
 	tween.parallel()
-	tween.tween_property(world_environment, "environment:sky:sky_material:ground_bottom_color", top_color, duration)
+	tween.tween_property(world_environment, "environment:sky:sky_material:shader_parameter/ground_bottom_color", top_color, duration)
 	tween.parallel()
-	tween.tween_property(world_environment, "environment:sky:sky_material:ground_horizon_color", horizon_color, duration)
+	tween.tween_property(world_environment, "environment:sky:sky_material:shader_parameter/ground_horizon_color", horizon_color, duration)
 
 func _process(_delta: float) -> void:
 	_refresh_day_state()

@@ -1,5 +1,6 @@
 extends Node
 var save_path: String = "user://save_files/"
+var img_save_path: String = "user://save_files/previews/"
 
 var spawn = Vector3(5,1.5,0)
 var location = "town"
@@ -34,6 +35,8 @@ func save_player_data() -> void:
 	}
 	var save_name = Time.get_datetime_string_from_system().replace("T", "_").replace(":", "-")
 	var err: Error = FileHandler.store_json_file(save_data, save_path + save_name + ".json", true)
+	FileHandler._check_and_create_directory(img_save_path, true)
+	UiListener.save_slot_img.save_png(img_save_path + save_name + ".png")
 	if err != OK:
 		push_error("Could not save player data: ", error_string(err))
 		

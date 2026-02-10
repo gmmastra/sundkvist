@@ -79,5 +79,6 @@ static func get_files_in_folder(path: String):
 		printerr("Directory does not exist: ", path)
 		return []
 	
-	var file_names := DirAccess.get_files_at(path)
+	var file_names := Array(DirAccess.get_files_at(path))
+	file_names.reverse()
 	return file_names
