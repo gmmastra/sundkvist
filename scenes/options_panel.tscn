@@ -3,61 +3,28 @@
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_npixg"]
 [ext_resource type="Script" uid="uid://dkjph0o6pi4jr" path="res://scripts/ui/options.gd" id="1_ofg22"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pl3l"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5441"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_towyk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npixg"]
 bg_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npixg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofg22"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hq2b"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6busr"]
-bg_color = Color(1, 1, 1, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="Theme" id="Theme_ofg22"]
-/fonts/font = ExtResource("1_npixg")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcnpr"]
-bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
-expand_margin_left = 5.0
-
-[sub_resource type="DPITexture" id="DPITexture_ofg22"]
-
-[sub_resource type="DPITexture" id="DPITexture_8hq2b"]
-
-[sub_resource type="DPITexture" id="DPITexture_hblyp"]
-
-[sub_resource type="DPITexture" id="DPITexture_bcnpr"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b240"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfe3d"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_bcnpr"]
+[sub_resource type="Theme" id="Theme_npixg"]
 default_font = ExtResource("1_npixg")
-default_font_size = 10
-Button/font_sizes/font_size = 10
-Button/fonts/font = ExtResource("1_npixg")
-Button/styles/normal = SubResource("StyleBoxFlat_bcnpr")
-PopupMenu/colors/font_hover_color = Color(0, 0, 0, 1)
-PopupMenu/constants/indent = 0
-PopupMenu/constants/v_separation = 2
-PopupMenu/icons/radio_checked = SubResource("DPITexture_ofg22")
-PopupMenu/icons/radio_checked_disabled = SubResource("DPITexture_8hq2b")
-PopupMenu/icons/radio_unchecked = SubResource("DPITexture_hblyp")
-PopupMenu/icons/radio_unchecked_disabled = SubResource("DPITexture_bcnpr")
-PopupMenu/styles/hover = SubResource("StyleBoxFlat_3b240")
-PopupMenu/styles/panel = SubResource("StyleBoxFlat_yfe3d")
+default_font_size = 30
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_npixg")
+Button/styles/normal = SubResource("StyleBoxEmpty_ofg22")
+Button/styles/pressed = SubResource("StyleBoxEmpty_8hq2b")
+VBoxContainer/constants/separation = 13
+
+[sub_resource type="Theme" id="Theme_hblyp"]
+VBoxContainer/constants/separation = 13
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hblyp"]
 bg_color = Color(0, 0, 0, 1)
@@ -66,15 +33,6 @@ expand_margin_left = 5.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hq2b"]
 bg_color = Color(1, 1, 1, 1)
 expand_margin_left = 5.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofg22"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hsfm"]
-bg_color = Color(1, 1, 1, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
 
 [sub_resource type="Gradient" id="Gradient_ofg22"]
 offsets = PackedFloat32Array(0)
@@ -101,132 +59,126 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjeyn"]
-bg_color = Color(1, 1, 1, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
+[node name="options_panel" type="CanvasLayer" unique_id=74658267]
+process_mode = 3
+visible = false
+script = ExtResource("1_ofg22")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrmhu"]
-bg_color = Color(1, 1, 1, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[node name="options_panel" type="Control" unique_id=593745071]
-layout_mode = 3
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1632416988]
+z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ofg22")
+theme = SubResource("Theme_npixg")
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 80
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1169733004]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=621673130]
+layout_mode = 2
+
+[node name="close" type="Button" parent="MarginContainer/VBoxContainer" unique_id=294952106]
 z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -173.0
-offset_top = -124.0
-offset_right = 168.44263
-offset_bottom = 130.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
-
-[node name="close" type="Button" parent="ColorRect" unique_id=294952106]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 4.5
-offset_right = 48.0
-offset_bottom = 23.0
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_npixg")
-theme_override_font_sizes/font_size = 11
-theme_override_styles/normal = SubResource("StyleBoxEmpty_4pl3l")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_j5441")
-theme_override_styles/hover = SubResource("StyleBoxFlat_towyk")
+layout_mode = 2
+size_flags_horizontal = 0
 text = "◀ back"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=288797205]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -20.0
-offset_right = 50.0
-offset_bottom = 20.0
-grow_vertical = 2
+[node name="tabs" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1712597145]
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="video_tab" type="Button" parent="ColorRect/VBoxContainer" unique_id=940505508]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/tabs" unique_id=694623417]
+y_sort_enabled = true
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/tabs/MarginContainer" unique_id=288797205]
+layout_mode = 2
+alignment = 1
+
+[node name="video_tab" type="Button" parent="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer" unique_id=940505508]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_npixg")
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxEmpty_npixg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_8hq2b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6busr")
-text = "VIDEO  ▮"
+text = "VIDEO   ▮"
 alignment = 0
 
-[node name="options" type="VBoxContainer" parent="ColorRect/VBoxContainer/video_tab" unique_id=920256554]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 70.785
-offset_top = -46.005
-offset_right = 227.0
-offset_bottom = -7.005001
-grow_vertical = 2
-theme = SubResource("Theme_ofg22")
-theme_override_constants/separation = -5
+[node name="audio_tab" type="Button" parent="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer" unique_id=792716314]
+layout_mode = 2
+text = "AUDIO"
+alignment = 0
 
-[node name="vsync" type="HBoxContainer" parent="ColorRect/VBoxContainer/video_tab/options" unique_id=2101275456]
+[node name="keybind_tab" type="Button" parent="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer" unique_id=2028539155]
+layout_mode = 2
+text = "KEYBIND"
+alignment = 0
+
+[node name="game_tab" type="Button" parent="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer" unique_id=1949050933]
+layout_mode = 2
+text = "GAME"
+alignment = 0
+
+[node name="options" type="MarginContainer" parent="MarginContainer/VBoxContainer/tabs" unique_id=669523255]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_hblyp")
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
+
+[node name="video" type="VBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options" unique_id=920256554]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/video_tab/options/vsync" unique_id=351252948]
+[node name="resolution" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/video" unique_id=393607284]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/video/resolution" unique_id=341434551]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("1_npixg")
-theme_override_font_sizes/normal_font_size = 10
-text = "V-SYNC"
+text = "RESOLUTION"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
 
-[node name="CheckButton" type="CheckBox" parent="ColorRect/VBoxContainer/video_tab/options/vsync" unique_id=1192374649]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/tabs/options/video/resolution" unique_id=1770672251]
+layout_mode = 2
+
+[node name="fullscreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/video" unique_id=975441255]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/video/fullscreen" unique_id=1911927883]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FULLSCREEN"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckBox" parent="MarginContainer/VBoxContainer/tabs/options/video/fullscreen" unique_id=134908430]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/outline_size = 4
 
-[node name="aa" type="HBoxContainer" parent="ColorRect/VBoxContainer/video_tab/options" unique_id=250723588]
+[node name="aa" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/video" unique_id=250723588]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/video_tab/options/aa" unique_id=1818401701]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/video/aa" unique_id=1818401701]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("1_npixg")
-theme_override_font_sizes/normal_font_size = 10
 text = "ANTI-ALIASING"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/video_tab/options/aa" unique_id=1727982867]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/tabs/options/video/aa" unique_id=1727982867]
 layout_mode = 2
-theme = SubResource("Theme_bcnpr")
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hblyp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8hq2b")
@@ -241,33 +193,32 @@ popup/item_2/id = 2
 popup/item_3/text = "MSAA 2X"
 popup/item_3/id = 3
 
-[node name="audio_tab" type="Button" parent="ColorRect/VBoxContainer" unique_id=792716314]
+[node name="vsync" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/video" unique_id=2101275456]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_npixg")
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxEmpty_npixg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ofg22")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3hsfm")
-text = "AUDIO"
-alignment = 0
 
-[node name="options" type="VBoxContainer" parent="ColorRect/VBoxContainer/audio_tab" unique_id=1663291793]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/video/vsync" unique_id=351252948]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "V-SYNC"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckBox" parent="MarginContainer/VBoxContainer/tabs/options/video/vsync" unique_id=1192374649]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 4
+
+[node name="audio" type="VBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options" unique_id=1663291793]
 visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 70.785
-offset_top = -61.005
-offset_right = 224.785
-offset_bottom = 52.995
-grow_vertical = 2
-
-[node name="music" type="HBoxContainer" parent="ColorRect/VBoxContainer/audio_tab/options" unique_id=1454126666]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/audio_tab/options/music" unique_id=1210699337]
+[node name="music" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/audio" unique_id=1454126666]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/audio/music" unique_id=1210699337]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_npixg")
@@ -277,9 +228,10 @@ fit_content = true
 scroll_active = false
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer/audio_tab/options/music" unique_id=613942409]
-custom_minimum_size = Vector2(79.825, 0)
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/tabs/options/audio/music" unique_id=613942409]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 tooltip_text = "1"
 theme_override_icons/grabber = SubResource("GradientTexture2D_8hq2b")
 theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bcnpr")
@@ -287,10 +239,10 @@ theme_override_styles/slider = SubResource("StyleBoxFlat_ofg22")
 step = 25.0
 value = 50.0
 
-[node name="sfx" type="HBoxContainer" parent="ColorRect/VBoxContainer/audio_tab/options" unique_id=1228582671]
+[node name="sfx" type="HBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options/audio" unique_id=1228582671]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/audio_tab/options/sfx" unique_id=1541640862]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/audio/sfx" unique_id=1541640862]
 custom_minimum_size = Vector2(70, 7.31)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_npixg")
@@ -300,71 +252,51 @@ fit_content = true
 scroll_active = false
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer/audio_tab/options/sfx" unique_id=2018552083]
-custom_minimum_size = Vector2(79.825, 0)
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/tabs/options/audio/sfx" unique_id=2018552083]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_icons/grabber = SubResource("GradientTexture2D_8hq2b")
 theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bcnpr")
 theme_override_styles/slider = SubResource("StyleBoxFlat_ofg22")
 step = 25.0
 value = 50.0
 
-[node name="keybind_tab" type="Button" parent="ColorRect/VBoxContainer" unique_id=2028539155]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_npixg")
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxEmpty_npixg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ofg22")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rjeyn")
-text = "KEYBIND"
-alignment = 0
-
-[node name="options" type="VBoxContainer" parent="ColorRect/VBoxContainer/keybind_tab" unique_id=208756778]
+[node name="keybind" type="VBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options" unique_id=208756778]
 visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 70.785
-offset_top = -76.005005
-offset_right = 224.785
-offset_bottom = 37.994995
-grow_vertical = 2
+layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/keybind_tab/options" unique_id=1861806628]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/keybind" unique_id=1861806628]
 layout_mode = 2
 text = "MUSIC"
 
-[node name="game_tab" type="Button" parent="ColorRect/VBoxContainer" unique_id=1949050933]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_npixg")
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxEmpty_npixg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ofg22")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xrmhu")
-text = "GAME"
-alignment = 0
-
-[node name="options" type="VBoxContainer" parent="ColorRect/VBoxContainer/game_tab" unique_id=1868301166]
+[node name="game" type="VBoxContainer" parent="MarginContainer/VBoxContainer/tabs/options" unique_id=1868301166]
 visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 70.785
-offset_top = -91.005005
-offset_right = 224.785
-offset_bottom = 22.994995
-grow_vertical = 2
+layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer/game_tab/options" unique_id=1198778410]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/tabs/options/game" unique_id=1198778410]
 layout_mode = 2
 text = "MUSIC"
 
-[connection signal="pressed" from="ColorRect/close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/video_tab" to="." method="_on_video_tab_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/audio_tab" to="." method="_on_audio_tab_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/keybind_tab" to="." method="_on_keybind_tab_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/game_tab" to="." method="_on_game_tab_pressed"]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1169733004]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -400.0
+offset_right = 500.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer/video_tab" to="." method="_on_video_tab_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer/audio_tab" to="." method="_on_audio_tab_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer/keybind_tab" to="." method="_on_keybind_tab_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer/game_tab" to="." method="_on_game_tab_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/tabs/options/video/resolution/OptionButton" to="." method="_on_resolution_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/tabs/options/video/fullscreen/CheckButton" to="." method="_on_fullscreen_toggled"]

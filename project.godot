@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+OptionsPanel="*uid://cmfdiok30vc0j"
 DialogueManager="*uid://c3rodes2l3gxb"
 PlayerData="*uid://cxkff7niqexr2"
 Inventory="*uid://dmrjsotx6ff4p"
@@ -33,11 +34,10 @@ runtime/balloon_path="res://dialogue/balloon.tscn"
 
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=300
-window/size/sharp_corners=true
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/viewport_width=1280
+window/size/viewport_height=960
+window/size/resizable=false
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -122,5 +122,6 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/texts/object_tes
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 scaling_3d/size/viewport_height=240
 scaling_3d/size/viewport_width=320

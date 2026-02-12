@@ -1,6 +1,7 @@
 extends Node
 var save_path: String = "user://save_files/"
 var img_save_path: String = "user://save_files/previews/"
+signal config_loaded
 
 var spawn = Vector3(5,1.5,0)
 var location = "town"
@@ -39,7 +40,16 @@ func save_player_data() -> void:
 	UiListener.save_slot_img.save_png(img_save_path + save_name + ".png")
 	if err != OK:
 		push_error("Could not save player data: ", error_string(err))
-		
+
+func save_player_config() -> void:
+	var config: Dictionary = {
+		"resolution": OptionsPanel.current_res,
+		"fullscreen": OptionsPanel.fullscreen,
+	}
+	
+	var err: Error = FileHandler.store_json_file(config, "user://config.json", true)
+	if err != OK:
+		push_error("Could not save settings config: ", error_string(err))
 
 
 func load_player_data(save_slot) -> Error:
@@ -65,6 +75,21 @@ func load_player_data(save_slot) -> Error:
 		inventory_items[item_id] = InventoryItem.from_dict(save_data["inventory_items"][item_id])
 	return OK
 
+func load_player_config() -> Error:
+	var config: Dictionary = {}
+	var err: Error = FileHandler.open_json_file("user://config.json", config)
+	if err == ERR_FILE_NOT_FOUND:
+		save_player_config()
+		err = OK
+	if err != OK:
+		push_error("Could not load settings config: ", error_string(err))
+		return err
+	
+	var res = config["resolution"].replace("(", "").replace(")", " ").replace(", ", "x")
+	OptionsPanel.current_res = res
+	OptionsPanel.fullscreen = config["fullscreen"]
+	config_loaded.emit()
+	return OK
 
 func verify_save_data(save_data: Dictionary) -> Error:
 	if !save_data.has("day"):
