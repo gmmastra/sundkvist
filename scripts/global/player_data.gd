@@ -7,6 +7,7 @@ var spawn = Vector3(5,1.5,0)
 var location = "town"
 
 var day: int = 1
+var day_time = [0,0]
 var inventory_items:= {
 	"key": InventoryItem.new(),
 	"sword": InventoryItem.new()
@@ -110,7 +111,6 @@ func clear_data():
 	spawn = Vector3(5,1.5,0)
 	location = "town"
 	held_inventory = []
-	Inventory.inv_sprites = []
 	inventory_items = {
 		"key": InventoryItem.new(),
 		"sword": InventoryItem.new()

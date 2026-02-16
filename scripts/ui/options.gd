@@ -17,7 +17,8 @@ func _ready() -> void:
 	tabs = OptionsPanel.get_node("MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer")
 	options = OptionsPanel.get_node("MarginContainer/VBoxContainer/tabs/options")
 	_add_resolutions()
-	OptionsPanel.current_res = _get_maximum_resolution()
+	if OptionsPanel.current_res == null:
+		OptionsPanel.current_res = _get_maximum_resolution()
 
 
 func set_resolution(res):
@@ -41,6 +42,7 @@ func set_fullscreen(mode):
 
 # populate list of supported resolutions
 func _add_resolutions():
+	options.get_node("video/resolution/OptionButton").clear()
 	for res in resolutions:
 		options.get_node("video/resolution/OptionButton").add_item(res)
 

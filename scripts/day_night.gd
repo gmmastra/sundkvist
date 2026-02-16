@@ -39,10 +39,15 @@ func _ready() -> void:
 func _change_duration():
 	duration_multiplier = day_length * 5
 	animation_player.speed_scale = 1.0 / duration_multiplier
-	
+
+# set correct sun position based off time
 func _set_sun():
+	var start = str(PlayerData.day_time[0]) + "."
+	if PlayerData.day_time[1] < 10:
+		start += "0"
+	start += str(PlayerData.day_time[1])
 	animation_player.play("day_night")
-	animation_player.seek(start_time)
+	animation_player.seek(start.to_float())
 	
 func _set_current_state():
 	for i in dayColorList.size():

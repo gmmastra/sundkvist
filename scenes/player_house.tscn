@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://cuc4vja0ql7cu"]
+[gd_scene format=3 uid="uid://bn5bmfskf62ib"]
 
-[ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_d4fj4"]
-[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_s731n"]
-[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_q2xmn"]
-[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_bdwpd"]
-[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_g2eii"]
+[ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_du4rk"]
+[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_8d5f5"]
+[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_exct2"]
+[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_2fw8c"]
+[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_j121a"]
 
-[sub_resource type="Shader" id="Shader_b00ts"]
+[sub_resource type="Shader" id="Shader_j121a"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.6.stable's ProceduralSkyMaterial.
 
@@ -96,24 +96,24 @@ void sky() {
 }
 "
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_g2eii"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b00ts"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b00ts"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t32w7"]
 width = 1024
 height = 1024
-noise = SubResource("FastNoiseLite_g2eii")
+noise = SubResource("FastNoiseLite_b00ts")
 seamless = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qe1s6"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i0mj0"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i0mj0"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t6268"]
 width = 1024
 height = 1024
-noise = SubResource("FastNoiseLite_qe1s6")
+noise = SubResource("FastNoiseLite_i0mj0")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6q2i4"]
-shader = SubResource("Shader_b00ts")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0mj0"]
+shader = SubResource("Shader_j121a")
 shader_parameter/sky_top_color = Color(0.8039216, 0.9137255, 0.9372549, 1)
 shader_parameter/sky_horizon_color = Color(0.9843137, 0.76862746, 0.58431375, 1)
 shader_parameter/inv_sky_curve = 3.999999841054287
@@ -124,23 +124,23 @@ shader_parameter/sun_angle_max = 0.8660254
 shader_parameter/inv_sun_curve = 22.782017
 shader_parameter/exposure = 1.0
 shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
-shader_parameter/cloud_texture = SubResource("NoiseTexture2D_b00ts")
-shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_i0mj0")
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_t32w7")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_t6268")
 shader_parameter/cloud_direction = Vector2(0, 1)
 shader_parameter/cloud_direction2 = Vector2(1, 0)
 shader_parameter/cloud_scale = Vector2(0.02, 0.02)
 shader_parameter/cloud_distance = 0.0
 shader_parameter/cloud_speed = 0.002
 
-[sub_resource type="Sky" id="Sky_ie20d"]
-sky_material = SubResource("ShaderMaterial_6q2i4")
+[sub_resource type="Sky" id="Sky_h0cye"]
+sky_material = SubResource("ShaderMaterial_i0mj0")
 
-[sub_resource type="Environment" id="Environment_loj03"]
+[sub_resource type="Environment" id="Environment_55swn"]
 background_mode = 2
-sky = SubResource("Sky_ie20d")
+sky = SubResource("Sky_h0cye")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
-albedo_texture = ExtResource("4_bdwpd")
+albedo_texture = ExtResource("4_2fw8c")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
@@ -185,10 +185,10 @@ _data = {
 &"day_night": SubResource("Animation_olg7q")
 }
 
-[node name="church" type="Node3D" unique_id=363311239]
-script = ExtResource("1_d4fj4")
+[node name="player_house" type="Node3D" unique_id=363311239]
+script = ExtResource("1_du4rk")
 
-[node name="UI" parent="." unique_id=955173854 instance=ExtResource("2_s731n")]
+[node name="UI" parent="." unique_id=955173854 instance=ExtResource("2_8d5f5")]
 
 [node name="Viewport" type="SubViewportContainer" parent="." unique_id=202259770]
 texture_filter = 1
@@ -213,11 +213,11 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 6.0886064, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/game" unique_id=1628092522]
-environment = SubResource("Environment_loj03")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/game" unique_id=1860742082]
+environment = SubResource("Environment_55swn")
 
-[node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_q2xmn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5089893, 1.5, -0.62828016)
+[node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_exct2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
@@ -233,5 +233,5 @@ shape = SubResource("BoxShape3D_rd3vj")
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_t1rx8")
 
-[node name="door" parent="." unique_id=1176906371 instance=ExtResource("5_g2eii")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.251034, 1.909301, 0)
+[node name="door" parent="." unique_id=1176906371 instance=ExtResource("5_j121a")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -1.3859434, 1.8877764, -6.100193)

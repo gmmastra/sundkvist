@@ -8,6 +8,7 @@ var level = preload("res://scenes/town.tscn")
 var progress_bar
 var loading = false
 
+var day_start = true
 
 func _ready() -> void:
 	var root = get_tree().root
@@ -31,7 +32,7 @@ func _process(_delta: float) -> void:
 
 func new_game() -> void:
 	PlayerData.clear_data()
-	scene_path = "res://scenes/town.tscn"
+	scene_path = "res://scenes/player_house.tscn"
 	change_scene(scene_path)
 
 func load_game(save_slot) -> void:
@@ -55,4 +56,13 @@ func load_scene(scene):
 		get_tree().current_scene.get_node("Viewport/game/player").global_transform.origin = PlayerData.spawn
 		get_tree().current_scene.get_node("Viewport/game/player").look_at(Vector3(0, 0, 0))
 		get_tree().current_scene.get_node("Viewport/game/player").rotation.x = 0
-	
+
+func end_of_day():
+	PlayerData.day += 1
+	PlayerData.day_time = [0,0]
+	PlayerData.spawn = Vector3(5,1.5,0)
+	PlayerData.location = "player_house"
+	day_start = true
+	#play eod screen
+	#update enemy spawns
+	change_scene("res://scenes/player_house.tscn")

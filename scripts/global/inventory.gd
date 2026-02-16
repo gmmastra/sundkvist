@@ -4,7 +4,6 @@ signal item_check
 
 var inv
 var inv_slots
-var inv_sprites := []
 var open = false
 var item_target = ""
 var was_submitted = false
@@ -32,8 +31,8 @@ func slot_focus_entered(slot_index):
 	# handle use item in dialogue
 	if !inv_slots.get_node("slot" + slot_index).disabled:
 		if get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
-			if inv_sprites[int(slot_index) - 1]._name == item_target:
-				remove_from_inventory(inv_sprites[int(slot_index) - 1])
+			if PlayerData.held_inventory[int(slot_index) - 1] == item_target:
+				remove_from_inventory(PlayerData.held_inventory[int(slot_index) - 1])
 				was_submitted = true
 				
 			item_check.emit()
@@ -48,8 +47,9 @@ func slot_focus_entered(slot_index):
 # handle hover text per slot
 func slot_mouse_entered(slot_index):
 	if !inv_slots.get_node("slot" + slot_index).disabled:
-		inv.get_node("item_name").text = inv_sprites[int(slot_index) - 1]._name
-		inv.get_node("item_desc").text = inv_sprites[int(slot_index) - 1].description
+		var item = PlayerData.inventory_items[PlayerData.held_inventory[int(slot_index) - 1]]
+		inv.get_node("item_name").text = item._name
+		inv.get_node("item_desc").text = item.description
 
 func slot_mouse_exited():
 	inv.get_node("item_name").text = ""
@@ -83,7 +83,6 @@ func add_to_inventory(hit):
 	PlayerData.inventory_items[hit.name]._name = hit.name
 	PlayerData.inventory_items[hit.name].mesh = item_mesh
 	
-	inv_sprites.append(PlayerData.inventory_items[hit.name])
 	PlayerData.held_inventory.append(hit.name)
 	add_sprite_to_view(hit.name)
 	hit.queue_free()
@@ -91,13 +90,11 @@ func add_to_inventory(hit):
 func remove_from_inventory(hit):
 	if inv == null:
 		bind_variables()
-	var index = inv_sprites.find(PlayerData.inventory_items[hit._name])
-	var held_index = PlayerData.held_inventory.find(hit._name)
+	var held_index = PlayerData.held_inventory.find(hit)
 	
-	if index != -1:
-		PlayerData.inventory_items[hit._name].used = true
+	if held_index != -1:
+		PlayerData.inventory_items[hit].used = true
 		PlayerData.held_inventory.remove_at(held_index)
-		inv_sprites.remove_at(index)
 		
 		render_array()
 
@@ -124,8 +121,6 @@ func remove_sprite_from_view(index):
 
 
 func load_inventory():
-	for item in PlayerData.held_inventory:
-		inv_sprites.append(PlayerData.inventory_items[item])
 	render_array()
 
 
@@ -135,5 +130,5 @@ func render_array():
 		remove_sprite_from_view(i + 1)
 		
 	# load in still present inventory sprites
-	for sprite in inv_sprites:
-		add_sprite_to_view(sprite._name)
+	for item in PlayerData.held_inventory:
+		add_sprite_to_view(item)
