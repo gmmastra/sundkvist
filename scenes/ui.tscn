@@ -175,10 +175,6 @@ texture = SubResource("PlaceholderTexture2D_xlq6p")
 centered = false
 offset = Vector2(-0.5, -1)
 
-[node name="hour_timer" type="Timer" parent="clock" unique_id=220820347]
-wait_time = 60.0
-autostart = true
-
 [node name="min_timer" type="Timer" parent="clock" unique_id=1370423176]
 autostart = true
 
@@ -341,7 +337,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="options_panel" parent="pause_menu" unique_id=593745071 instance=ExtResource("14_qsv74")]
-layout_mode = 1
 
 [node name="quit" type="Button" parent="pause_menu" unique_id=1951383103]
 layout_mode = 0
@@ -378,8 +373,6 @@ size = 2.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1873187784]
 transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39890912, 0, 1.7625611, 1.1171428)
 
-[connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_timer_timeout"]
-[connection signal="timeout" from="clock/hour_timer" to="clock" method="_on_hour_timer_timeout"]
-[connection signal="timeout" from="clock/min_timer" to="clock" method="_on_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_min_timer_timeout"]
+[connection signal="timeout" from="clock/min_timer" to="clock" method="_on_timer_timeout"]
 [connection signal="pressed" from="pause_menu/quit" to="." method="_on_quit_pressed"]

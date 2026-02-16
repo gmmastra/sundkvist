@@ -26,6 +26,7 @@ Inventory="*uid://dmrjsotx6ff4p"
 UiListener="*uid://cfaknnwy5kgvv"
 SceneManager="*uid://dp4c7q50kffv"
 SceneTransition="*uid://b8v0b576jsgix"
+SubViewportBg="*uid://dyfbg02vs7wlo"
 
 [dialogue_manager]
 

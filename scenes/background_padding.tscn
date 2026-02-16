@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c4s06flc80see"]
+
+[node name="BackgroundPadding" type="CanvasLayer" unique_id=759874168]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1680161736]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -487.0
+offset_top = 480.0
+offset_right = -316.0
+offset_bottom = -210.0
+grow_horizontal = 0
+grow_vertical = 2

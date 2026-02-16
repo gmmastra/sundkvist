@@ -58,11 +58,14 @@ func load_scene(scene):
 		get_tree().current_scene.get_node("Viewport/game/player").rotation.x = 0
 
 func end_of_day():
+	#play eod screen, saving symbol
 	PlayerData.day += 1
 	PlayerData.day_time = [0,0]
 	PlayerData.spawn = Vector3(5,1.5,0)
 	PlayerData.location = "player_house"
-	day_start = true
-	#play eod screen
+	UiListener.save_slot_img = get_viewport().get_texture().get_image()
+	UiListener.save_slot_img.resize(120, 120)
 	#update enemy spawns
+	day_start = true
+	PlayerData.save_player_data()
 	change_scene("res://scenes/player_house.tscn")

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dyfbg02vs7wlo"]
+
+[ext_resource type="Script" uid="uid://2v3b2ogtlc0j" path="res://scripts/ui/sub_viewport_bg.gd" id="1_i0ge8"]
+[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="2_7dlqm"]
+
+[node name="SubViewportBg" type="SubViewport" unique_id=1247997258]
+script = ExtResource("1_i0ge8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1607031541]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=451166869]
+modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7dlqm")
+expand_mode = 1
+stretch_mode = 1

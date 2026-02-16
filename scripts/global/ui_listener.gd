@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 		else:
 			get_tree().paused = true
 			save_slot_img = get_viewport().get_texture().get_image()
-			save_slot_img.resize(40, 40)
+			save_slot_img.resize(120, 120)
 			
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			get_node("/root/" + get_tree().current_scene.name + "/UI/pause_menu").show()

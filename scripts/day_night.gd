@@ -46,8 +46,9 @@ func _set_sun():
 	if PlayerData.day_time[1] < 10:
 		start += "0"
 	start += str(PlayerData.day_time[1])
+	start_time = start.to_float()
 	animation_player.play("day_night")
-	animation_player.seek(start.to_float())
+	animation_player.seek(start_time)
 	
 func _set_current_state():
 	for i in dayColorList.size():

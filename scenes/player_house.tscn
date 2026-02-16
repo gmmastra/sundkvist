@@ -219,6 +219,9 @@ environment = SubResource("Environment_55swn")
 [node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_exct2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
 
+[node name="door" parent="Viewport/game" unique_id=1176906371 instance=ExtResource("5_j121a")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -1.3859434, 1.8877764, -6.100193)
+
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_w7c3h")
@@ -232,6 +235,3 @@ shape = SubResource("BoxShape3D_rd3vj")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Viewport/game" unique_id=1237449746]
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_t1rx8")
-
-[node name="door" parent="." unique_id=1176906371 instance=ExtResource("5_j121a")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -1.3859434, 1.8877764, -6.100193)
