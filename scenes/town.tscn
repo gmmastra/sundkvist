@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_b0eaf"]
 [ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="3_b00ts"]
 [ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="4_i0mj0"]
-[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="5_ie20d"]
+[ext_resource type="Shader" uid="uid://c04bdeqtoeklw" path="res://shaders/psx.gdshader" id="4_ie20d"]
 [ext_resource type="PackedScene" uid="uid://tavghaxbt1fh" path="res://scenery/door_unlocked.tscn" id="6_55swn"]
 [ext_resource type="PackedScene" uid="uid://bu4f8kukctt2y" path="res://scenery/door_locked.tscn" id="7_ckatl"]
 [ext_resource type="Script" uid="uid://bw8hlbca3x5vc" path="res://scripts/conditional_spawn.gd" id="7_uutfq"]
@@ -16,6 +16,14 @@
 [ext_resource type="Script" uid="uid://xlwhi3bxin4n" path="res://scripts/spawn_manager.gd" id="14_b0eaf"]
 [ext_resource type="PackedScene" uid="uid://3fxyk6leimp0" path="res://inventory/items/key.tscn" id="14_f72b0"]
 [ext_resource type="PackedScene" uid="uid://cxgdhi04mr3wo" path="res://scenery/door_teleport_church.tscn" id="15_b00ts"]
+[ext_resource type="Shader" uid="uid://y1jr4q8cpb7p" path="res://shaders/water.gdshader" id="17_i0mj0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55swn"]
+shader = ExtResource("4_ie20d")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
 
 [sub_resource type="Shader" id="Shader_b00ts"]
 code = "
@@ -149,10 +157,8 @@ sky_material = SubResource("ShaderMaterial_i0mj0")
 [sub_resource type="Environment" id="Environment_55swn"]
 background_mode = 2
 sky = SubResource("Sky_ie20d")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
-albedo_texture = ExtResource("5_ie20d")
-uv1_scale = Vector3(3, 2, 1)
+ambient_light_sky_contribution = 0.35
+reflected_light_source = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
 
@@ -212,7 +218,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 12),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(3.1415927, 0, 0), Vector3(6.2831855, 0, 0)]
+"values": [Vector3(3.3161256, 0, 0), Vector3(6.1086526, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t1rx8"]
@@ -220,6 +226,52 @@ _data = {
 &"RESET": SubResource("Animation_8c41q"),
 &"day_night": SubResource("Animation_olg7q")
 }
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ie20d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_55swn"]
+noise = SubResource("FastNoiseLite_ie20d")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ckatl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0havn"]
+noise = SubResource("FastNoiseLite_ckatl")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ov17k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2dnfj"]
+noise = SubResource("FastNoiseLite_ov17k")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie20d"]
+render_priority = 0
+shader = ExtResource("17_i0mj0")
+shader_parameter/water_color = Color(0, 0.635, 0.639, 1)
+shader_parameter/color_ratio = 0.01
+shader_parameter/alpha_scale = 0.8499999810008
+shader_parameter/roughness = 0.47999998927104
+shader_parameter/normal = 0.999999977648
+shader_parameter/water_normal_noise_1 = SubResource("NoiseTexture2D_0havn")
+shader_parameter/water_normal_noise_2 = SubResource("NoiseTexture2D_2dnfj")
+shader_parameter/foam_texture = SubResource("NoiseTexture2D_55swn")
+shader_parameter/time_scale = 1.0
+shader_parameter/highlights_time_scale = 0.0
+shader_parameter/uv_scale = 1.0
+shader_parameter/normal_blend = 0.5
+shader_parameter/highlights_blend = 0.5
+shader_parameter/depth_distance = 0.5
+shader_parameter/foam_intensity = 1.0
+shader_parameter/foam_width = 0.999999977648
+shader_parameter/shore_fade_distance = 0.0
+shader_parameter/abberation_r = Vector2(0, 0)
+shader_parameter/abberation_g = Vector2(0, 0)
+shader_parameter/abberation_b = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_55swn"]
+material = SubResource("ShaderMaterial_ie20d")
+size = Vector2(17.26, 24.55)
 
 [node name="level" type="Node3D" unique_id=363311239]
 script = ExtResource("1_b0eaf")
@@ -231,6 +283,7 @@ script = ExtResource("14_b0eaf")
 
 [node name="Viewport" type="SubViewportContainer" parent="." unique_id=202259770]
 texture_filter = 1
+material = SubResource("ShaderMaterial_55swn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -260,7 +313,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_w7c3h")
 mesh = SubResource("BoxMesh_rd3vj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Viewport/game/floor" unique_id=236405721]
@@ -273,7 +325,7 @@ transform = Transform3D(1, 0, 0, 0, 32.614677, 0, 0, 0, 1, -5.834631, -6.176436,
 mesh = SubResource("BoxMesh_w7c3h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Viewport/game" unique_id=1390995172]
-transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, 0.28499794, 1.4658484, 5.379919)
+transform = Transform3D(1, 0, 0, 0, 3.1438146, 0, 0, 0, 1, 11.894372, 0.82987595, -5.0196924)
 mesh = SubResource("BoxMesh_w7c3h")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Viewport/game" unique_id=48187476]
@@ -335,3 +387,7 @@ script = ExtResource("7_uutfq")
 
 [node name="door" parent="Viewport/game" unique_id=1499032951 instance=ExtResource("15_b00ts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0588374, 1.9314582, 0)
+
+[node name="water" type="MeshInstance3D" parent="Viewport/game" unique_id=1753886733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.488887, 0, -8.893372)
+mesh = SubResource("PlaneMesh_55swn")

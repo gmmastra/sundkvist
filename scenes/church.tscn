@@ -3,8 +3,16 @@
 [ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_d4fj4"]
 [ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_s731n"]
 [ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_q2xmn"]
+[ext_resource type="Shader" uid="uid://c04bdeqtoeklw" path="res://shaders/psx.gdshader" id="3_qe1s6"]
 [ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_bdwpd"]
 [ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_g2eii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loj03"]
+shader = ExtResource("3_qe1s6")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 1
 
 [sub_resource type="Shader" id="Shader_b00ts"]
 code = "
@@ -192,6 +200,7 @@ script = ExtResource("1_d4fj4")
 
 [node name="Viewport" type="SubViewportContainer" parent="." unique_id=202259770]
 texture_filter = 1
+material = SubResource("ShaderMaterial_loj03")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -10,9 +10,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause_menu") and !Inventory.open and !get_tree().current_scene.name == "main_menu":
 		if paused:
 			get_tree().paused = false
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			get_node("/root/" + get_tree().current_scene.name + "/UI/pause_menu").hide()
 			get_node("/root/" + get_tree().current_scene.name + "/UI/dim").hide()
+			if !get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			get_tree().paused = true
 			save_slot_img = get_viewport().get_texture().get_image()
