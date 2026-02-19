@@ -9,6 +9,12 @@ var stamina_step = 0.3
 var stamina_cooldown = false
 var exhausted = false
 
+var hidden = true
+var target_light_level: float = 0.0;
+var current_light_level: float = 0.0:
+	set(new_value):
+		_set_light_level(new_value)
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var crouching = false
@@ -26,8 +32,34 @@ func _ready() -> void:
 	SPEED_DEFAULT = SPEED;
 	stamina = get_node("/root/" + get_tree().current_scene.name + "/UI/stamina")
 	inventory = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory")
+	$SubViewport.debug_draw = 2
+	current_light_level = _get_average_color($SubViewport.get_texture()).get_luminance()
+	target_light_level = current_light_level
+
+# shadow detection helper functions
+func _set_light_level(new_value: float):
+	if new_value > target_light_level + 0.035:
+		hidden = false
+		target_light_level = new_value
+	elif new_value < target_light_level - 0.035:
+		hidden = true
+		target_light_level = new_value
+
+func _get_average_color(texture: ViewportTexture) -> Color:
+	var image = texture.get_image()
+	image.resize(1, 1, Image.INTERPOLATE_LANCZOS)
+	return image.get_pixel(0,0)
+
 
 func _process(delta: float) -> void:
+
+	# light detection
+	$SubViewport/light_detection.global_position = global_position
+	var texture = $SubViewport.get_texture()
+	var color = _get_average_color(texture)
+	#$TextureRect.texture = texture
+	$ColorRect.color = color
+	current_light_level = color.get_luminance()
 	
 	if Input.is_action_just_pressed("interact"):
 		$interaction_click.play()

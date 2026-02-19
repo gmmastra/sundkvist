@@ -96,3 +96,36 @@ unit_size = 5.0
 
 [node name="interaction_click" type="AudioStreamPlayer3D" parent="." unique_id=1996361484]
 stream = ExtResource("11_2ieo8")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=114146256]
+size = Vector2i(50, 50)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="light_detection" type="Node3D" parent="SubViewport" unique_id=652037974]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/light_detection" unique_id=292612580]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.19951984, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/light_detection" unique_id=240283604]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=85342961]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1304890628]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
