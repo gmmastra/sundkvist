@@ -57,7 +57,7 @@ corner_detail = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font = ExtResource("2_3fodd")
-default_font_size = 14
+default_font_size = 30
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -87,23 +87,19 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_0hx7h")
 
-[sub_resource type="Theme" id="Theme_267us"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_af48w"]
-
 [sub_resource type="Animation" id="Animation_3fodd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Progress:position")
+tracks/0/path = NodePath("%Progress:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-38, -12)]
+"values": [Vector2(1048, -52)]
 }
 
 [sub_resource type="Animation" id="Animation_0hx7h"]
@@ -112,14 +108,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Progress:position")
+tracks/0/path = NodePath("%Progress:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-38, -12), Vector2(-38, -5.555), Vector2(-38, -12)]
+"values": [Vector2(1048, -52), Vector2(1048, -48.025), Vector2(1048, -52)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_267us"]
@@ -127,6 +123,10 @@ _data = {
 &"RESET": SubResource("Animation_3fodd"),
 &"progress": SubResource("Animation_0hx7h")
 }
+
+[sub_resource type="Theme" id="Theme_267us"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_af48w"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3fodd"]
 
@@ -149,13 +149,42 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -198.0
+offset_top = -315.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 60
+theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 60
+theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 30
+
+[node name="Control" type="Control" parent="Balloon/MarginContainer" unique_id=675055783]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Progress" type="RichTextLabel" parent="Balloon/MarginContainer/Control" unique_id=1462244948]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "▼
+"
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/MarginContainer/Control" unique_id=1519884160]
+libraries/ = SubResource("AnimationLibrary_267us")
 
 [node name="PanelContainer" type="PanelContainer" parent="Balloon/MarginContainer" unique_id=2097316823]
 clip_children = 2
@@ -194,47 +223,6 @@ size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Dialogue..."
-
-[node name="Control" type="Control" parent="Balloon" unique_id=675055783]
-custom_minimum_size = Vector2(20, 10)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 8
-
-[node name="Progress" type="RichTextLabel" parent="Balloon/Control" unique_id=1462244948]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -22.0
-offset_right = -26.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/normal_font_size = 7
-bbcode_enabled = true
-text = "▼
-"
-fit_content = true
-scroll_active = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Balloon/Control" unique_id=1519884160]
-libraries/ = SubResource("AnimationLibrary_267us")
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" unique_id=545068653 node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
