@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bn5bmfskf62ib"]
 
-[ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_du4rk"]
-[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_8d5f5"]
-[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_exct2"]
-[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_2fw8c"]
-[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_j121a"]
+[ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_uhids"]
+[ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_yxilm"]
+[ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_mahjx"]
+[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="4_4fycn"]
+[ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="5_vc333"]
 
 [sub_resource type="Shader" id="Shader_j121a"]
 code = "
@@ -140,7 +140,7 @@ background_mode = 2
 sky = SubResource("Sky_h0cye")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7c3h"]
-albedo_texture = ExtResource("4_2fw8c")
+albedo_texture = ExtResource("5_vc333")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
@@ -185,10 +185,10 @@ _data = {
 &"day_night": SubResource("Animation_olg7q")
 }
 
-[node name="player_house" type="Node3D" unique_id=363311239]
-script = ExtResource("1_du4rk")
+[node name="home" type="Node3D" unique_id=363311239]
+script = ExtResource("1_uhids")
 
-[node name="UI" parent="." unique_id=955173854 instance=ExtResource("2_8d5f5")]
+[node name="UI" parent="." unique_id=955173854 instance=ExtResource("2_yxilm")]
 
 [node name="Viewport" type="SubViewportContainer" parent="." unique_id=202259770]
 texture_filter = 1
@@ -216,10 +216,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Viewport/game" unique_id=1860742082]
 environment = SubResource("Environment_55swn")
 
-[node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_exct2")]
+[node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("3_mahjx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
 
-[node name="door" parent="Viewport/game" unique_id=1176906371 instance=ExtResource("5_j121a")]
+[node name="door" parent="Viewport/game" unique_id=1176906371 instance=ExtResource("4_4fycn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -1.3859434, 1.8877764, -6.100193)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]

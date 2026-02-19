@@ -215,10 +215,19 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 func _on_dialogue_label_spoke(letter: String, letter_index: int, _speed: float) -> void:
 	if (letter in ["!", "?"] or letter_index % 2 != 0) and not letter in [".", " ", ","] :
-		if letter in ["!", "?"]:
-			talk_sound.pitch_scale = 1.25
+		var voice = get_node("Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/CharacterLabel").text.to_lower()
+		if voice == "" or voice == "you":
+			talk_sound.stream = load("res://dialogue/voices/default.wav")
 		else:
-			talk_sound.pitch_scale = 1.0
+			var randomizer = AudioStreamRandomizer.new()
+			load_audio_from_folder(randomizer, "res://dialogue/voices/" + voice + "/")
+			talk_sound.stream = randomizer
 		talk_sound.play()
+
+
+func load_audio_from_folder(randomizer: AudioStreamRandomizer, path: String):
+	for file_name in DirAccess.get_files_at(path):
+		if file_name.get_extension() == "wav":
+			randomizer.add_stream(randomizer.streams_count, ResourceLoader.load(path + file_name), 1.0)
 
 #endregion

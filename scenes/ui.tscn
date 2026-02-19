@@ -18,10 +18,10 @@
 [sub_resource type="ImageTexture" id="ImageTexture_nt7q6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
 bg_color = Color(1, 1, 1, 0)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -49,8 +49,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nt7q6"]
 gradient = SubResource("Gradient_xlq6p")
-width = 50
-height = 50
+width = 200
+height = 200
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -68,6 +68,9 @@ colors = PackedColorArray(0.18717614, 0.18717614, 0.18717614, 1, 0.1882353, 0.18
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wm3ai"]
 gradient = SubResource("Gradient_gdt2y")
+
+[sub_resource type="Theme" id="Theme_qsv74"]
+Button/constants/icon_max_width = 150
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
 
@@ -100,7 +103,48 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Theme" id="Theme_yev5y"]
 
+[sub_resource type="Theme" id="Theme_h1mc3"]
+default_font = ExtResource("3_yev5y")
+
 [sub_resource type="BoxMesh" id="BoxMesh_p7vwb"]
+
+[sub_resource type="Animation" id="Animation_qsv74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("item_preview/SubViewportContainer/SubViewport/item_mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h1mc3"]
+resource_name = "item_preview"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("item_preview/SubViewportContainer/SubViewport/item_mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cof4p"]
+_data = {
+&"RESET": SubResource("Animation_qsv74"),
+&"item_preview": SubResource("Animation_h1mc3")
+}
 
 [node name="UI" type="CanvasLayer" unique_id=1880132005]
 process_mode = 3
@@ -114,10 +158,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = -85.6819
-offset_right = 3.4053955
-offset_bottom = 378.43915
+offset_left = -79.0
+offset_top = -267.0
+offset_right = 118.29736
+offset_bottom = 1178.946
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.37, 0.37)
@@ -128,49 +172,47 @@ max_value = 1.0
 step = 0.0
 value = 1.0
 
-[node name="Control" type="Control" parent="." unique_id=981135388]
-layout_mode = 3
+[node name="reticle" type="ColorRect" parent="." unique_id=1817301358]
+material = SubResource("ShaderMaterial_yev5y")
+custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="reticle" type="ColorRect" parent="Control" unique_id=1817301358]
-material = SubResource("ShaderMaterial_yev5y")
-layout_mode = 1
-offset_right = 1.75
-offset_bottom = 1.75
 
 [node name="clock" type="Control" parent="." unique_id=757002547]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 59.999985
-offset_bottom = 60.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 225.0
+offset_bottom = 225.0
 script = ExtResource("1_nt7q6")
 
 [node name="face" type="Sprite2D" parent="clock" unique_id=1508947]
-scale = Vector2(1.36, 1.36)
 texture = SubResource("GradientTexture2D_nt7q6")
 centered = false
 
 [node name="hour_hand" type="Sprite2D" parent="clock" unique_id=2055014934]
-position = Vector2(25, 24.999998)
+position = Vector2(99.02433, 95)
 rotation = -1.5707964
-scale = Vector2(1.09, 17.645)
+scale = Vector2(9.693031, 85.83198)
 texture = SubResource("PlaceholderTexture2D_xlq6p")
 centered = false
 offset = Vector2(-0.5, -1)
 
 [node name="minute_hand" type="Sprite2D" parent="clock" unique_id=1607081981]
-position = Vector2(25.000004, 25)
+position = Vector2(99, 95.26786)
 rotation = -1.5707964
-scale = Vector2(1.09, 21.142496)
+scale = Vector2(10.1131935, 94.7462)
 texture = SubResource("PlaceholderTexture2D_xlq6p")
 centered = false
 offset = Vector2(-0.5, -1)
@@ -185,18 +227,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -58.0
-offset_top = -54.0
-offset_right = -8.0
-offset_bottom = -8.0
+offset_left = -68.0
+offset_top = -90.0
+offset_right = -18.0
+offset_bottom = -18.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = -6
+theme_override_constants/line_separation = -12
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 31
 bbcode_enabled = true
 text = "[I]
 
@@ -206,7 +248,7 @@ scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="inventory" type="Control" parent="." unique_id=1370828803]
+[node name="inventory" type="Control" parent="." unique_id=900819529]
 visible = false
 z_index = 1
 layout_mode = 3
@@ -217,27 +259,26 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="background" type="CenterContainer" parent="inventory" unique_id=652253390]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
+offset_left = 640.0
+offset_top = 480.0
+offset_right = 640.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="Sprite2D" parent="inventory/background" unique_id=235520259]
-scale = Vector2(3.6953125, 3.6953125)
+scale = Vector2(9.400391, 9.400391)
 texture = SubResource("GradientTexture2D_gdt2y")
 
 [node name="ColorRect2" type="Sprite2D" parent="inventory/background" unique_id=1830759]
-position = Vector2(-0.124988556, -128.4855)
-scale = Vector2(3.691407, 0.31007817)
+position = Vector2(-6.1035156e-05, -327.372)
+scale = Vector2(9.406248, 0.7901249)
 texture = SubResource("GradientTexture2D_wm3ai")
 
 [node name="ColorRect3" type="Sprite2D" parent="inventory/background" unique_id=227601201]
-position = Vector2(1.9669533e-06, 129)
-scale = Vector2(3.6875002, 0.30975)
+position = Vector2(0, 327)
+scale = Vector2(9.40625, 0.79012483)
 texture = SubResource("GradientTexture2D_wm3ai")
 
 [node name="slot_container" type="PanelContainer" parent="inventory" unique_id=1233720573]
@@ -247,12 +288,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.64944
-offset_top = -111.0
-offset_right = 117.5827
-offset_bottom = 111.0
+offset_left = -298.5
+offset_top = -300.8927
+offset_right = 298.5
+offset_bottom = 300.8927
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_qsv74")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_p7vwb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="inventory/slot_container" unique_id=51901711]
@@ -268,64 +310,91 @@ theme_override_constants/v_separation = 11
 columns = 3
 
 [node name="slot1" parent="inventory/slot_container/VBoxContainer/slots" unique_id=752464260 instance=ExtResource("4_gdt2y")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_qsv74")
 
 [node name="slot2" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2007235238 instance=ExtResource("5_wm3ai")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_h1mc3")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot3" parent="inventory/slot_container/VBoxContainer/slots" unique_id=913192253 instance=ExtResource("6_8dubc")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_cof4p")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot4" parent="inventory/slot_container/VBoxContainer/slots" unique_id=1527034952 instance=ExtResource("7_6rmj2")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_f7tlh")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot5" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2137188715 instance=ExtResource("8_vsj0x")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_8k7j3")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot6" parent="inventory/slot_container/VBoxContainer/slots" unique_id=765997557 instance=ExtResource("9_qsv74")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_jkdwc")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot7" parent="inventory/slot_container/VBoxContainer/slots" unique_id=988313523 instance=ExtResource("10_h1mc3")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_rlppe")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot8" parent="inventory/slot_container/VBoxContainer/slots" unique_id=417824350 instance=ExtResource("11_cof4p")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_ycmcx")
+icon_alignment = 1
+expand_icon = true
 
 [node name="slot9" parent="inventory/slot_container/VBoxContainer/slots" unique_id=344328651 instance=ExtResource("12_f7tlh")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 icon = SubResource("ViewportTexture_kupmu")
 
 [node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
 layout_mode = 0
-offset_left = 121.0
-offset_top = 13.0
-offset_right = 311.0
-offset_bottom = 30.0
+offset_left = 405.0
+offset_top = 133.0
+offset_right = 931.0
+offset_bottom = 175.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
+fit_content = true
+vertical_alignment = 1
 
 [node name="item_desc" type="RichTextLabel" parent="inventory" unique_id=1737961791]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 270.0
-offset_right = 314.0
-offset_bottom = 285.0
+offset_left = 358.0
+offset_top = 783.0
+offset_right = 928.0
+offset_bottom = 825.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
+autowrap_mode = 0
+vertical_alignment = 1
 
 [node name="pause_menu" type="Control" parent="." unique_id=2077292780]
 visible = false
@@ -356,22 +425,75 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.512)
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=322422707]
+[node name="item_popup" type="VBoxContainer" parent="." unique_id=301814764]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h1mc3")
+theme_override_constants/separation = 20
+
+[node name="name" type="RichTextLabel" parent="item_popup" unique_id=1812369380]
+layout_mode = 2
+text = "picked up: item"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="item_preview" type="Control" parent="item_popup" unique_id=1187020963]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="item_popup/item_preview" unique_id=1725620424]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="item_popup/item_preview/SubViewportContainer" unique_id=322422707]
 own_world_3d = true
 transparent_bg = true
-size = Vector2i(35, 35)
+handle_input_locally = false
+size = Vector2i(133, 133)
+render_target_update_mode = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=71434096]
+[node name="item_mesh" type="MeshInstance3D" parent="item_popup/item_preview/SubViewportContainer/SubViewport" unique_id=71434096]
 mesh = SubResource("BoxMesh_p7vwb")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1144359512]
-transform = Transform3D(0.7071068, 0.5, -0.5, 0, 0.7071068, 0.70710677, 0.7071068, -0.5, 0.5, -2.044282, 2.9042032, 2.0382915)
+[node name="Camera3D" type="Camera3D" parent="item_popup/item_preview/SubViewportContainer/SubViewport" unique_id=1144359512]
+transform = Transform3D(0.7071067, 0.49999994, -0.49999997, 0, 0.70710677, 0.7071067, 0.7071067, -0.49999994, 0.49999997, -2.044282, 2.9042032, 2.0382915)
 projection = 1
 current = true
 size = 2.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1873187784]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="item_popup/item_preview/SubViewportContainer/SubViewport" unique_id=1873187784]
 transform = Transform3D(1, 0, 0, 0, 0.39890912, 0.91699046, 0, -0.91699046, 0.39890912, 0, 1.7625611, 1.1171428)
+
+[node name="description" type="RichTextLabel" parent="item_popup" unique_id=79750437]
+layout_mode = 2
+text = "description"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="item_popup" unique_id=1970989145]
+libraries/ = SubResource("AnimationLibrary_cof4p")
 
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_min_timer_timeout"]
 [connection signal="timeout" from="clock/min_timer" to="clock" method="_on_timer_timeout"]

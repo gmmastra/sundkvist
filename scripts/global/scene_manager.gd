@@ -32,7 +32,8 @@ func _process(_delta: float) -> void:
 
 func new_game() -> void:
 	PlayerData.clear_data()
-	scene_path = "res://scenes/player_house.tscn"
+	SceneManager.day_start = true
+	scene_path = "res://scenes/home.tscn"
 	change_scene(scene_path)
 
 func load_game(save_slot) -> void:

@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="2_3fodd"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
-[ext_resource type="AudioStream" uid="uid://3mny3fn0nwd0" path="res://dialogue/talk_sound.wav" id="5_0hx7h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 0)
@@ -128,6 +127,8 @@ _data = {
 &"RESET": SubResource("Animation_3fodd"),
 &"progress": SubResource("Animation_0hx7h")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3fodd"]
 
 [node name="ExampleBalloon" type="CanvasLayer" unique_id=1016642652]
 script = ExtResource("1_36de5")
@@ -260,7 +261,7 @@ layout_mode = 2
 text = "Response example"
 
 [node name="TalkSound" type="AudioStreamPlayer" parent="." unique_id=194956240]
-stream = ExtResource("5_0hx7h")
+stream = SubResource("AudioStreamRandomizer_3fodd")
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="spoke" from="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

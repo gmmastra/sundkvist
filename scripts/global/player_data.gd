@@ -4,7 +4,7 @@ var img_save_path: String = "user://save_files/previews/"
 signal config_loaded
 
 var spawn = Vector3(5,1.5,0)
-var location = "town"
+var location = "home"
 
 var day: int = 1
 var day_time = [0,0]
@@ -108,8 +108,9 @@ func verify_save_data(save_data: Dictionary) -> Error:
 # resets player information
 func clear_data():
 	day = 1
+	day_time = [0,0]
 	spawn = Vector3(5,1.5,0)
-	location = "town"
+	location = "home"
 	held_inventory = []
 	inventory_items = {
 		"key": InventoryItem.new(),

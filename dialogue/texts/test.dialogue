@@ -6,5 +6,5 @@ Nathan: [wave amp=25 freq=5]Here are some choices.[/wave]
 	Nathan: You picked the second one.
 - Start again => start
 - End the conversation 
-Nathan: For more information see the online documentation. 
+You: Forget it. I don't feel like talking. 
 => END

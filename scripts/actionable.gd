@@ -10,13 +10,13 @@ func action() -> void:
 	# display dialogue	
 	DialogueManager.show_dialogue_balloon(dialogue_resource, dialogue_start)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	ui.get_node("Control/reticle").hide()
+	ui.get_node("reticle").hide()
 	await DialogueManager.dialogue_ended
 	
 	# release player after dialogue end
 	player.get_node("head").get_node("RayCast3D").talking_cooldown = true
 	await get_tree().create_timer(0.05).timeout
-	ui.get_node("Control/reticle").show()
+	ui.get_node("reticle").show()
 	player.get_node("head").get_node("RayCast3D").player_start()
 	player.get_node("head").get_node("RayCast3D").talking = false
 	player.get_node("head").get_node("RayCast3D").talking_cooldown = false
