@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b807gukwxeupn"]
+
+[ext_resource type="Script" uid="uid://cpjrjxgihhfsu" path="res://scripts/enemy_state/enemy.gd" id="1_wa0eo"]
+[ext_resource type="Script" uid="uid://bnfmvqnqiy68l" path="res://scripts/enemy_state/state_machine.gd" id="2_1ohc2"]
+[ext_resource type="Script" uid="uid://d0cqj5dn5riqh" path="res://scripts/enemy_state/enemy_wander.gd" id="3_ggbst"]
+[ext_resource type="Script" uid="uid://ctdtuqofhsvx3" path="res://scripts/enemy_state/enemy_chase.gd" id="4_ggbst"]
+[ext_resource type="Script" uid="uid://pd88hejg1kss" path="res://scripts/enemy_state/enemy_attack.gd" id="5_toq4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbwbs"]
+albedo_color = Color(0.9999998, 0.1663084, 0.2106609, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wa0eo"]
+material = SubResource("StandardMaterial3D_dbwbs")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbwbs"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1392683814]
+script = ExtResource("1_wa0eo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=821366931]
+mesh = SubResource("CapsuleMesh_wa0eo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=25976553]
+shape = SubResource("CapsuleShape3D_dbwbs")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=951282233]
+avoidance_enabled = true
+radius = 0.6
+
+[node name="StateMachine" type="Node" parent="." unique_id=165522594 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_1ohc2")
+initial_state = NodePath("EnemyWander")
+metadata/_custom_type_script = "uid://bnfmvqnqiy68l"
+
+[node name="EnemyWander" type="Node" parent="StateMachine" unique_id=1519098198]
+script = ExtResource("3_ggbst")
+metadata/_custom_type_script = "uid://d0cqj5dn5riqh"
+
+[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=355286903]
+script = ExtResource("4_ggbst")
+metadata/_custom_type_script = "uid://ctdtuqofhsvx3"
+
+[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=1619447415]
+script = ExtResource("5_toq4n")
+metadata/_custom_type_script = "uid://pd88hejg1kss"

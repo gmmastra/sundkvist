@@ -8,10 +8,15 @@ var open = false
 var item_target = ""
 var was_submitted = false
 
+var player: CharacterBody3D = null
+var ui: CanvasLayer = null
+
 # bind paths at main scene runtime
 func bind_variables():
-	inv_slots = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory/slot_container/VBoxContainer/slots")
-	inv = get_node("/root/" + get_tree().current_scene.name + "/UI/inventory")
+	player = get_tree().get_nodes_in_group("player")[0]
+	ui = get_tree().get_nodes_in_group("ui")[0]
+	inv_slots = ui.get_node("inventory/slot_container/VBoxContainer/slots")
+	inv = ui.get_node("inventory")
 	load_inventory()
 	bind_signals()
 
@@ -30,7 +35,7 @@ func bind_signals():
 func slot_focus_entered(slot_index):
 	# handle use item in dialogue
 	if !inv_slots.get_node("slot" + slot_index).disabled:
-		if get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
+		if player.get_node("head/RayCast3D").talking:
 			if PlayerData.held_inventory[int(slot_index) - 1] == item_target:
 				remove_from_inventory(PlayerData.held_inventory[int(slot_index) - 1])
 				was_submitted = true
@@ -65,7 +70,7 @@ func open_inventory():
 	open = true
 	was_submitted = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_node("/root/" + get_tree().current_scene.name + "/UI/dim").show()
+	ui.get_node("dim").show()
 
 func close_inventory():
 	inv.visible = false
@@ -73,7 +78,7 @@ func close_inventory():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	item_check.emit()
 	UiListener.manual_pause(false)
-	get_node("/root/" + get_tree().current_scene.name + "/UI/dim").hide()
+	ui.get_node("dim").hide()
 
 func add_to_inventory(hit):
 	if inv == null:

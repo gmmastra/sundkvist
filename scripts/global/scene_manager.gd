@@ -54,9 +54,9 @@ func load_scene(scene):
 	await get_tree().process_frame
 	
 	if get_tree().current_scene.name != "main_menu":
-		get_tree().current_scene.get_node("Viewport/game/player").global_transform.origin = PlayerData.spawn
-		get_tree().current_scene.get_node("Viewport/game/player").look_at(Vector3(0, 0, 0))
-		get_tree().current_scene.get_node("Viewport/game/player").rotation.x = 0
+		get_tree().get_nodes_in_group("player")[0].global_transform.origin = PlayerData.spawn
+		get_tree().get_nodes_in_group("player")[0].look_at(Vector3(0, 0, 0))
+		get_tree().get_nodes_in_group("player")[0].rotation.x = 0
 
 func end_of_day():
 	#play eod screen, saving symbol
@@ -64,9 +64,10 @@ func end_of_day():
 	PlayerData.day_time = [0,0]
 	PlayerData.spawn = Vector3(5,1.5,0)
 	PlayerData.location = "player_house"
+	get_tree().get_nodes_in_group("player")[0].hidden = true
 	UiListener.save_slot_img = get_viewport().get_texture().get_image()
 	UiListener.save_slot_img.resize(120, 120)
 	#update enemy spawns
 	day_start = true
 	PlayerData.save_player_data()
-	change_scene("res://scenes/player_house.tscn")
+	change_scene("res://scenes/home.tscn")

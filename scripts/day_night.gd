@@ -57,18 +57,22 @@ func _set_current_state():
 			return
 
 func _refresh_day_state():
-	var new_state = false
-	
-	for i in dayColorList.size():
-		var same_state = i == current_day_state
-		if !same_state and animation_player.current_animation_position > dayColorList[i].start_time:
-			current_day_state = i
-			new_state = true
-			
-		if new_state:
-			_day_change_animation()
+	match current_day_state:
+		0:
+			if animation_player.current_animation_position > dayColorList[1].start_time:
+				current_day_state += 1
+				_day_change_animation()
+		1:
+			if animation_player.current_animation_position > dayColorList[2].start_time:
+				current_day_state += 1
+				_day_change_animation()
+		2:
+			if animation_player.current_animation_position == dayColorList[0].start_time:
+				current_day_state = 0
+				_day_change_animation()
 
 func _day_change_animation():
+	print("day state: ", current_day_state)
 	var top_color = dayColorList[current_day_state]["top"]
 	var horizon_color = dayColorList[current_day_state]["horizon"]
 	var tween = create_tween()

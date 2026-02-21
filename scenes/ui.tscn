@@ -97,6 +97,18 @@ Button/constants/icon_max_width = 150
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_8k7j3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jkdwc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rlppe"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ycmcx"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_kupmu"]
 viewport_path = NodePath("SubViewport")
 
@@ -110,18 +122,6 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gglip"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0tsab"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_i5tog"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rleeb"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wu1et"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Theme" id="Theme_yev5y"]
@@ -169,7 +169,7 @@ _data = {
 &"item_preview": SubResource("Animation_h1mc3")
 }
 
-[node name="UI" type="CanvasLayer" unique_id=1880132005]
+[node name="UI" type="CanvasLayer" unique_id=1880132005 groups=["ui"]]
 process_mode = 3
 layer = 5
 script = ExtResource("1_vsj0x")
@@ -357,61 +357,61 @@ columns = 3
 [node name="slot1" parent="inventory/slot_container/VBoxContainer/slots" unique_id=752464260 instance=ExtResource("4_gdt2y")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_kupmu")
+icon = SubResource("ViewportTexture_8k7j3")
 
 [node name="slot2" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2007235238 instance=ExtResource("5_wm3ai")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_catpy")
+icon = SubResource("ViewportTexture_jkdwc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot3" parent="inventory/slot_container/VBoxContainer/slots" unique_id=913192253 instance=ExtResource("6_8dubc")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_41akx")
+icon = SubResource("ViewportTexture_rlppe")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot4" parent="inventory/slot_container/VBoxContainer/slots" unique_id=1527034952 instance=ExtResource("7_6rmj2")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_sesyt")
+icon = SubResource("ViewportTexture_ycmcx")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot5" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2137188715 instance=ExtResource("8_vsj0x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_gglip")
+icon = SubResource("ViewportTexture_kupmu")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot6" parent="inventory/slot_container/VBoxContainer/slots" unique_id=765997557 instance=ExtResource("9_qsv74")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_0tsab")
+icon = SubResource("ViewportTexture_catpy")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot7" parent="inventory/slot_container/VBoxContainer/slots" unique_id=988313523 instance=ExtResource("10_h1mc3")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_i5tog")
+icon = SubResource("ViewportTexture_41akx")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot8" parent="inventory/slot_container/VBoxContainer/slots" unique_id=417824350 instance=ExtResource("11_cof4p")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_rleeb")
+icon = SubResource("ViewportTexture_sesyt")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot9" parent="inventory/slot_container/VBoxContainer/slots" unique_id=344328651 instance=ExtResource("12_f7tlh")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_wu1et")
+icon = SubResource("ViewportTexture_gglip")
 
 [node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
 layout_mode = 0

@@ -1,15 +1,15 @@
 extends RayCast3D
 
 signal interact_object
-var player
-var ui
+var player: CharacterBody3D = null
+var ui: CanvasLayer = null
 
 var talking = false
 var talking_cooldown = false
 
 func _ready() -> void:
-	player = get_tree().current_scene.get_node("Viewport/game/player")
-	ui = get_tree().current_scene.get_node("UI")
+	player = get_tree().get_nodes_in_group("player")[0]
+	ui = get_tree().get_nodes_in_group("ui")[0]
 
 func _physics_process(_delta: float) -> void:
 	if is_colliding():

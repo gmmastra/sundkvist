@@ -1,6 +1,8 @@
 extends CharacterBody3D
 signal change_vis(hidden: bool)
 
+var health = 100
+
 var SPEED_DEFAULT
 var SPEED = 3.0
 var SPRINT_SPEED = 5.0
@@ -56,13 +58,13 @@ func _get_average_color(texture: ViewportTexture) -> Color:
 
 
 func _process(delta: float) -> void:
-
+	
 	# light detection
 	$SubViewport/light_detection.global_position = global_position
 	var texture = $SubViewport.get_texture()
 	var color = _get_average_color(texture)
 	#$TextureRect.texture = texture
-	$ColorRect.color = color
+	#$ColorRect.color = color
 	current_light_level = color.get_luminance()
 	
 	if Input.is_action_just_pressed("interact"):
@@ -106,6 +108,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("crouch") and Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		crouching = true
 		SPEED = CROUCH_SPEED
+		$SubViewport/light_detection/Camera3D.position.y = lerp($SubViewport/light_detection/Camera3D.position.y, 0.05, 0.1)
 		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.5, 0.1)
 		$head/AnimationPlayer.speed_scale = 1.0
 	elif Input.is_action_just_released("crouch"):
@@ -113,6 +116,7 @@ func _physics_process(delta: float) -> void:
 		SPEED = SPEED_DEFAULT
 		$head/AnimationPlayer.speed_scale = 2.0
 	if !Input.is_action_pressed("crouch"):
+		$SubViewport/light_detection/Camera3D.position.y = lerp($SubViewport/light_detection/Camera3D.position.y, -0.2, 0.1)
 		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 2.0, 0.1)
 
 	$MeshInstance3D.mesh.height = $CollisionShape3D.shape.height

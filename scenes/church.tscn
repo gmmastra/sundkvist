@@ -229,7 +229,7 @@ environment = SubResource("Environment_loj03")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5089893, 1.5, -0.62828016)
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game" unique_id=1694999558]
-transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+transform = Transform3D(126.96476, 0, 0, 0, 1.0000006, 0, 0, 0, 123.08942, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_w7c3h")
 mesh = SubResource("BoxMesh_rd3vj")
 

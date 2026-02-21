@@ -6,14 +6,17 @@ var selected = false
 var hide_outline = false
 var outline_width = 0.05
 
+var player_ray: RayCast3D = null
+
 func _ready() -> void:
-	get_tree().current_scene.get_node("Viewport/game/player/head/RayCast3D").interact_object.connect(_set_selected)
+	player_ray = get_tree().get_nodes_in_group("player")[0].get_node("head/RayCast3D")
+	player_ray.interact_object.connect(_set_selected)
 	outline_mesh.visible = false
 
 
 func _process(_delta: float) -> void:
 	outline_mesh.visible = selected and !hide_outline
-	if get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player/head/RayCast3D").talking:
+	if player_ray.talking:
 		hide_outline = true
 	else:
 		hide_outline = false
