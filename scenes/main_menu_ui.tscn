@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://do1vmkff5d5py"]
 
 [ext_resource type="Script" uid="uid://nq2dat8n562a" path="res://scripts/ui/main_menu.gd" id="1_4pl3l"]
-[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rayio"]
+[ext_resource type="FontFile" uid="uid://b7g1otc1bx5lk" path="res://assets/fonts/JF-Dot-Kappa20B.ttf" id="2_rpghy"]
 [ext_resource type="PackedScene" uid="uid://hbpovsgugjtu" path="res://scenes/load_menu.tscn" id="4_towyk"]
 
+[sub_resource type="Theme" id="Theme_rpghy"]
+default_font = ExtResource("2_rpghy")
+
 [sub_resource type="Theme" id="Theme_4pl3l"]
-default_font = ExtResource("1_rayio")
+default_font = ExtResource("2_rpghy")
 default_font_size = 35
 /colors/font_outline_color = Color(0, 0, 0, 1)
-/constants/outline_size = 4
+/constants/outline_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rayio"]
 
@@ -54,6 +57,8 @@ alignment = 1
 [node name="logo" type="RichTextLabel" parent="default_panel/VBoxContainer2" unique_id=654586638]
 custom_minimum_size = Vector2(205.68, 100)
 layout_mode = 2
+theme = SubResource("Theme_rpghy")
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/normal_font_size = 60
 text = "SUNDKVIST"
 fit_content = true

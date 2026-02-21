@@ -1,4 +1,5 @@
 extends CharacterBody3D
+signal change_vis(hidden: bool)
 
 var SPEED_DEFAULT
 var SPEED = 3.0
@@ -28,6 +29,7 @@ var inventory
 var toggle_inventory = false
 
 func _ready() -> void:
+	change_vis.connect(UiListener.visibility_update, hidden)
 	$head/AnimationPlayer.play("head_bob")
 	SPEED_DEFAULT = SPEED;
 	stamina = get_node("/root/" + get_tree().current_scene.name + "/UI/stamina")
@@ -38,12 +40,14 @@ func _ready() -> void:
 
 # shadow detection helper functions
 func _set_light_level(new_value: float):
-	if new_value > target_light_level + 0.035:
-		hidden = false
-		target_light_level = new_value
-	elif new_value < target_light_level - 0.035:
-		hidden = true
-		target_light_level = new_value
+	if abs(new_value - target_light_level) > 0.035:
+		if new_value > target_light_level:
+			hidden = false
+			target_light_level = new_value
+		else:
+			hidden = true
+			target_light_level = new_value
+		emit_signal("change_vis", hidden)
 
 func _get_average_color(texture: ViewportTexture) -> Color:
 	var image = texture.get_image()

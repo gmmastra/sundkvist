@@ -196,13 +196,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 stretch = true
-stretch_shrink = 2
+stretch_shrink = 3
 mouse_target = true
 
 [node name="game" type="SubViewport" parent="Viewport" unique_id=2087311408]
 handle_input_locally = false
 audio_listener_enable_3d = true
-size = Vector2i(640, 480)
+size = Vector2i(426, 320)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 

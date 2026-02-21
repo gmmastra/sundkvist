@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmfdiok30vc0j"]
 
-[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_npixg"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://assets/fonts/MS Gothic.ttf" id="1_npixg"]
 [ext_resource type="Script" uid="uid://dkjph0o6pi4jr" path="res://scripts/ui/options.gd" id="1_ofg22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npixg"]

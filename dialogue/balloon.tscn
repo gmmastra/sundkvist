@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://duwd17dr1mi3"]
 
 [ext_resource type="Script" uid="uid://clvv4cvw7ry4v" path="res://dialogue/balloon.gd" id="1_36de5"]
-[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="2_3fodd"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://assets/fonts/MS Gothic.ttf" id="2_3fodd"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="FontFile" uid="uid://b7g1otc1bx5lk" path="res://assets/fonts/JF-Dot-Kappa20B.ttf" id="3_0hx7h"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -56,7 +57,7 @@ corner_detail = 5
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hx7h"]
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
-default_font = ExtResource("2_3fodd")
+default_font = ExtResource("3_0hx7h")
 default_font_size = 30
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -127,6 +128,9 @@ _data = {
 [sub_resource type="Theme" id="Theme_267us"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_af48w"]
+
+[sub_resource type="Theme" id="Theme_af48w"]
+default_font = ExtResource("3_0hx7h")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3fodd"]
 
@@ -239,6 +243,7 @@ offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
+theme = SubResource("Theme_af48w")
 theme_override_constants/separation = 2
 alignment = 1
 script = ExtResource("3_72ixx")

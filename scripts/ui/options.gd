@@ -12,6 +12,7 @@ var resolutions = {
 	"1024x768 ": Vector2i(1024,768),
 	"800x600 ": Vector2i(800,600)
 }
+var volume = 50
 
 func _ready() -> void:
 	tabs = OptionsPanel.get_node("MarginContainer/VBoxContainer/tabs/MarginContainer/VBoxContainer")

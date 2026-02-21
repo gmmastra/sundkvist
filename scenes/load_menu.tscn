@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hbpovsgugjtu"]
 
 [ext_resource type="Script" uid="uid://d1ng3ai4dvt38" path="res://scripts/ui/load_menu.gd" id="1_ff44e"]
-[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="1_rvg4c"]
+[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://assets/fonts/MS Gothic.ttf" id="1_rvg4c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1ygq"]
 bg_color = Color(1, 1, 1, 1)

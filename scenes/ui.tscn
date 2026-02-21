@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://cfaknnwy5kgvv" path="res://scripts/global/ui_listener.gd" id="1_vsj0x"]
 [ext_resource type="Shader" uid="uid://dmm14mushcw2b" path="res://shaders/reticle.gdshader" id="1_x4jx1"]
 [ext_resource type="Shader" uid="uid://drug7fpsfd4v" path="res://shaders/scanlines.gdshader" id="2_h1mc3"]
-[ext_resource type="FontFile" uid="uid://fch2qacv5wxj" path="res://dialogue/MS Gothic.ttf" id="3_yev5y"]
 [ext_resource type="PackedScene" uid="uid://pjxww50bjgdr" path="res://inventory/items/slots/slot_1.tscn" id="4_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://dt8cqkwlqflm5" path="res://assets/ui/1.png" id="5_8k7j3"]
 [ext_resource type="PackedScene" uid="uid://bvnm4syadkk18" path="res://inventory/items/slots/slot_2.tscn" id="5_wm3ai"]
 [ext_resource type="PackedScene" uid="uid://wyr87phvu7u" path="res://inventory/items/slots/slot_3.tscn" id="6_8dubc"]
+[ext_resource type="FontFile" uid="uid://b7g1otc1bx5lk" path="res://assets/fonts/JF-Dot-Kappa20B.ttf" id="6_cof4p"]
+[ext_resource type="Texture2D" uid="uid://dk4lg3kmph1a0" path="res://assets/ui/2.png" id="6_jkdwc"]
 [ext_resource type="PackedScene" uid="uid://b5x3iqg27q5m" path="res://inventory/items/slots/slot_4.tscn" id="7_6rmj2"]
+[ext_resource type="Texture2D" uid="uid://8qnrh7bxu3aa" path="res://assets/ui/3.png" id="7_rlppe"]
 [ext_resource type="PackedScene" uid="uid://b1f4fwcl2vr6y" path="res://inventory/items/slots/slot_5.tscn" id="8_vsj0x"]
 [ext_resource type="PackedScene" uid="uid://bgxftm6ortpf2" path="res://inventory/items/slots/slot_6.tscn" id="9_qsv74"]
 [ext_resource type="PackedScene" uid="uid://c12h8cicebcqj" path="res://inventory/items/slots/slot_7.tscn" id="10_h1mc3"]
@@ -20,11 +23,6 @@
 shader = ExtResource("2_h1mc3")
 shader_parameter/resolution = Vector2(1280, 960)
 shader_parameter/scan_line_amount = 0.2130000101175
-shader_parameter/warp_amount = 0.0
-shader_parameter/vignette_amount = 0.0
-shader_parameter/vignette_intensity = 0.0
-shader_parameter/grille_amount = 0.0
-shader_parameter/brightness_boost = 1.0
 
 [sub_resource type="ImageTexture" id="ImageTexture_nt7q6"]
 
@@ -68,6 +66,20 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xlq6p"]
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ycmcx"]
+frames = 3
+one_shot = true
+frame_0/texture = ExtResource("5_8k7j3")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("6_jkdwc")
+frame_1/duration = 0.3
+frame_2/texture = ExtResource("7_rlppe")
+frame_2/duration = 0.1
+
+[sub_resource type="Theme" id="Theme_f7tlh"]
+default_font = ExtResource("6_cof4p")
+default_font_size = 28
+
 [sub_resource type="Gradient" id="Gradient_yev5y"]
 colors = PackedColorArray(0.09239707, 0.09239706, 0.09239706, 1, 0.09411765, 0.09411765, 0.09411765, 1)
 
@@ -85,37 +97,37 @@ Button/constants/icon_max_width = 150
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qsv74"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_h1mc3"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_cof4p"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_f7tlh"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_8k7j3"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_jkdwc"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rlppe"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ycmcx"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_kupmu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_catpy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_41akx"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sesyt"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gglip"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0tsab"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i5tog"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rleeb"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wu1et"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Theme" id="Theme_yev5y"]
 
 [sub_resource type="Theme" id="Theme_h1mc3"]
-default_font = ExtResource("3_yev5y")
+default_font = ExtResource("6_cof4p")
 
 [sub_resource type="BoxMesh" id="BoxMesh_p7vwb"]
 
@@ -163,6 +175,7 @@ layer = 5
 script = ExtResource("1_vsj0x")
 
 [node name="scanlines" type="ColorRect" parent="." unique_id=1872614012]
+visible = false
 material = SubResource("ShaderMaterial_qsv74")
 offset_right = 1280.0
 offset_bottom = 960.0
@@ -193,7 +206,7 @@ value = 1.0
 
 [node name="reticle" type="ColorRect" parent="." unique_id=1817301358]
 material = SubResource("ShaderMaterial_yev5y")
-custom_minimum_size = Vector2(5, 5)
+custom_minimum_size = Vector2(4, 4)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -239,6 +252,18 @@ offset = Vector2(-0.5, -1)
 [node name="min_timer" type="Timer" parent="clock" unique_id=1370423176]
 autostart = true
 
+[node name="visibility" type="TextureRect" parent="." unique_id=1977500839]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 100.0
+grow_horizontal = 0
+texture = SubResource("AnimatedTexture_ycmcx")
+expand_mode = 1
+
 [node name="shortkeys" type="RichTextLabel" parent="." unique_id=1530808073]
 unique_name_in_owner = true
 anchors_preset = 3
@@ -255,8 +280,8 @@ grow_vertical = 0
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = -12
-theme_override_constants/outline_size = 3
-theme_override_fonts/normal_font = ExtResource("3_yev5y")
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("6_cof4p")
 theme_override_font_sizes/normal_font_size = 31
 bbcode_enabled = true
 text = "[I]
@@ -276,6 +301,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_f7tlh")
 
 [node name="background" type="CenterContainer" parent="inventory" unique_id=652253390]
 layout_mode = 0
@@ -331,61 +357,61 @@ columns = 3
 [node name="slot1" parent="inventory/slot_container/VBoxContainer/slots" unique_id=752464260 instance=ExtResource("4_gdt2y")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_qsv74")
+icon = SubResource("ViewportTexture_kupmu")
 
 [node name="slot2" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2007235238 instance=ExtResource("5_wm3ai")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_h1mc3")
+icon = SubResource("ViewportTexture_catpy")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot3" parent="inventory/slot_container/VBoxContainer/slots" unique_id=913192253 instance=ExtResource("6_8dubc")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_cof4p")
+icon = SubResource("ViewportTexture_41akx")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot4" parent="inventory/slot_container/VBoxContainer/slots" unique_id=1527034952 instance=ExtResource("7_6rmj2")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_f7tlh")
+icon = SubResource("ViewportTexture_sesyt")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot5" parent="inventory/slot_container/VBoxContainer/slots" unique_id=2137188715 instance=ExtResource("8_vsj0x")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_8k7j3")
+icon = SubResource("ViewportTexture_gglip")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot6" parent="inventory/slot_container/VBoxContainer/slots" unique_id=765997557 instance=ExtResource("9_qsv74")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_jkdwc")
+icon = SubResource("ViewportTexture_0tsab")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot7" parent="inventory/slot_container/VBoxContainer/slots" unique_id=988313523 instance=ExtResource("10_h1mc3")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_rlppe")
+icon = SubResource("ViewportTexture_i5tog")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot8" parent="inventory/slot_container/VBoxContainer/slots" unique_id=417824350 instance=ExtResource("11_cof4p")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_ycmcx")
+icon = SubResource("ViewportTexture_rleeb")
 icon_alignment = 1
 expand_icon = true
 
 [node name="slot9" parent="inventory/slot_container/VBoxContainer/slots" unique_id=344328651 instance=ExtResource("12_f7tlh")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-icon = SubResource("ViewportTexture_kupmu")
+icon = SubResource("ViewportTexture_wu1et")
 
 [node name="item_name" type="RichTextLabel" parent="inventory" unique_id=1140683472]
 layout_mode = 0
@@ -395,8 +421,6 @@ offset_right = 931.0
 offset_bottom = 175.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
-theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
@@ -409,8 +433,6 @@ offset_right = 928.0
 offset_bottom = 825.0
 theme = SubResource("Theme_yev5y")
 theme_override_constants/outline_size = 3
-theme_override_fonts/normal_font = ExtResource("3_yev5y")
-theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 autowrap_mode = 0
 vertical_alignment = 1

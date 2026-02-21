@@ -58,6 +58,16 @@ func item_preview(hit) -> void:
 	await get_tree().create_timer(0.5).timeout
 	UiListener.preview = true
 
+# toggles visibility meter based on player visibility
+func visibility_update(hidden) -> void:
+	var tex = get_node("/root/" + get_tree().current_scene.name + "/UI/visibility").texture
+	if hidden and tex.current_frame == 2:
+		tex.speed_scale = -1
+		tex.pause = false
+	elif !hidden and tex.current_frame == 0:
+		tex.speed_scale = 1
+		tex.pause = false
+
 # manual pause override
 func manual_pause(want_paused) -> void:
 	if want_paused:

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://fch2qacv5wxj"
-path="res://.godot/imported/MS Gothic.ttf-9a9611c4973466a94ebe8b1dd04e3fe3.fontdata"
+uid="uid://befaflxy2tdu5"
+path="res://.godot/imported/JF-Dot-jiskan16s.ttf-45565d1766dbfd055e70d8a0c508caa0.fontdata"
 
 [deps]
 
-source_file="res://dialogue/MS Gothic.ttf"
-dest_files=["res://.godot/imported/MS Gothic.ttf-9a9611c4973466a94ebe8b1dd04e3fe3.fontdata"]
+source_file="res://assets/fonts/JF-Dot-jiskan16s.ttf"
+dest_files=["res://.godot/imported/JF-Dot-jiskan16s.ttf-45565d1766dbfd055e70d8a0c508caa0.fontdata"]
 
 [params]
 
