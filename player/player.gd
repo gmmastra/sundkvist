@@ -1,8 +1,6 @@
 extends CharacterBody3D
 signal change_vis(hidden: bool)
 
-var health = 100
-
 var SPEED_DEFAULT
 var SPEED = 3.0
 var SPRINT_SPEED = 5.0
@@ -58,6 +56,11 @@ func _get_average_color(texture: ViewportTexture) -> Color:
 
 
 func _process(delta: float) -> void:
+	
+	# handle player dying
+	if PlayerData.health <= 0:
+		SceneManager.reset_day()
+		PlayerData.health = 100
 	
 	# light detection
 	$SubViewport/light_detection.global_position = global_position

@@ -24,6 +24,33 @@ shader = ExtResource("2_h1mc3")
 shader_parameter/resolution = Vector2(1280, 960)
 shader_parameter/scan_line_amount = 0.2130000101175
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
+shader = ExtResource("1_x4jx1")
+
+[sub_resource type="DPITexture" id="DPITexture_8k7j3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkdwc"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8k7j3"]
+
+[sub_resource type="Theme" id="Theme_8k7j3"]
+default_font = ExtResource("6_cof4p")
+default_font_size = 31
+HSlider/icons/grabber = SubResource("DPITexture_8k7j3")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_jkdwc")
+HSlider/styles/slider = SubResource("StyleBoxEmpty_8k7j3")
+RichTextLabel/constants/outline_size = 4
+
 [sub_resource type="ImageTexture" id="ImageTexture_nt7q6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
@@ -49,8 +76,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yev5y"]
-shader = ExtResource("1_x4jx1")
+[sub_resource type="Theme" id="Theme_jkdwc"]
+default_font = ExtResource("6_cof4p")
+default_font_size = 31
+RichTextLabel/constants/outline_size = 4
 
 [sub_resource type="Gradient" id="Gradient_xlq6p"]
 offsets = PackedFloat32Array(0.99115044, 1)
@@ -183,6 +212,45 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
+[node name="reticle" type="ColorRect" parent="." unique_id=1817301358]
+material = SubResource("ShaderMaterial_yev5y")
+custom_minimum_size = Vector2(4, 4)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="health" type="HBoxContainer" parent="." unique_id=1967227539]
+offset_left = 257.605
+offset_top = 37.83
+offset_right = 711.6056
+offset_bottom = 77.83
+theme = SubResource("Theme_8k7j3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="health" unique_id=1158227317]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "HP: 100/100 "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="health" unique_id=1651046035]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+rounded = true
+scrollable = false
+
 [node name="stamina" type="VSlider" parent="." unique_id=258750285]
 process_mode = 1
 anchors_preset = 6
@@ -204,20 +272,16 @@ max_value = 1.0
 step = 0.0
 value = 1.0
 
-[node name="reticle" type="ColorRect" parent="." unique_id=1817301358]
-material = SubResource("ShaderMaterial_yev5y")
-custom_minimum_size = Vector2(4, 4)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.5
-offset_top = -2.5
-offset_right = 2.5
-offset_bottom = 2.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="day" type="RichTextLabel" parent="." unique_id=571209080]
+offset_left = 258.0
+offset_top = 80.0
+offset_right = 336.0
+offset_bottom = 120.0
+theme = SubResource("Theme_jkdwc")
+text = "DAY 1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="clock" type="Control" parent="." unique_id=757002547]
 process_mode = 1

@@ -72,7 +72,6 @@ func _refresh_day_state():
 				_day_change_animation()
 
 func _day_change_animation():
-	print("day state: ", current_day_state)
 	var top_color = dayColorList[current_day_state]["top"]
 	var horizon_color = dayColorList[current_day_state]["horizon"]
 	var tween = create_tween()

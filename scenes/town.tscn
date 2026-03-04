@@ -1,23 +1,12 @@
-[gd_scene format=4 uid="uid://d3fdpg13dstsc"]
+[gd_scene format=3 uid="uid://d3fdpg13dstsc"]
 
 [ext_resource type="Script" uid="uid://disbuo81ot1k3" path="res://scripts/day_night.gd" id="1_b0eaf"]
 [ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="3_b00ts"]
 [ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="4_i0mj0"]
 [ext_resource type="Shader" uid="uid://j1ny6arq1qkm" path="res://shaders/sky.gdshader" id="5_ie20d"]
-[ext_resource type="PackedScene" uid="uid://tavghaxbt1fh" path="res://scenery/door_unlocked.tscn" id="6_55swn"]
-[ext_resource type="PackedScene" uid="uid://bu4f8kukctt2y" path="res://scenery/door_locked.tscn" id="7_ckatl"]
-[ext_resource type="Script" uid="uid://bw8hlbca3x5vc" path="res://scripts/conditional_spawn.gd" id="7_uutfq"]
-[ext_resource type="Script" uid="uid://dwwf6vl7tuqi" path="res://scripts/selectable.gd" id="8_0havn"]
-[ext_resource type="BoxMesh" uid="uid://bkvkpotaotjw2" path="res://inventory/items/meshes/sword.tres" id="9_ov17k"]
-[ext_resource type="PackedScene" uid="uid://xq720cbixdqg" path="res://scenes/actionable.tscn" id="10_2dnfj"]
-[ext_resource type="Resource" uid="uid://fr88cr2a336h" path="res://dialogue/texts/object_test.dialogue" id="11_8m6oo"]
-[ext_resource type="PackedScene" uid="uid://cq31v50akqbvf" path="res://characters/angel.tscn" id="12_uvrjk"]
-[ext_resource type="Resource" uid="uid://syasms7k50d7" path="res://dialogue/texts/test.dialogue" id="13_qflhy"]
+[ext_resource type="PackedScene" uid="uid://bjyr5i2373w2i" path="res://models/buildings/bridge_house.blend" id="6_t6cq8"]
+[ext_resource type="Texture2D" uid="uid://dco5qdq1y2mtx" path="res://models/buildings/bridge_house.png" id="7_cq4yp"]
 [ext_resource type="Script" uid="uid://xlwhi3bxin4n" path="res://scripts/spawn_manager.gd" id="14_b0eaf"]
-[ext_resource type="PackedScene" uid="uid://3fxyk6leimp0" path="res://inventory/items/key.tscn" id="14_f72b0"]
-[ext_resource type="PackedScene" uid="uid://cxgdhi04mr3wo" path="res://scenery/door_teleport_church.tscn" id="15_b00ts"]
-[ext_resource type="Shader" uid="uid://y1jr4q8cpb7p" path="res://shaders/water.gdshader" id="17_i0mj0"]
-[ext_resource type="PackedScene" uid="uid://b807gukwxeupn" path="res://characters/enemy.tscn" id="18_ie20d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55swn"]
 
@@ -67,39 +56,15 @@ ambient_light_sky_contribution = 0.35
 reflected_light_source = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_i0mj0"]
-vertices = PackedVector3Array(-13.886348, 0.7662258, 2.5266151, -6.886348, 0.7662258, 2.5266151, -6.636348, 0.7662258, 1.5266151, -13.886348, 0.7662258, -28.973385, -4.886348, 0.7662258, 1.5266151, -4.636348, 0.7662258, 2.5266151, 6.863652, 0.7662258, 2.5266151, 6.863652, 0.7662258, -28.973385, -6.636348, 0.7662258, 3.7766151, -13.886348, 0.7662258, 29.026615, -4.886348, 0.7662258, 3.7766151, 6.863652, 0.7662258, 29.026615)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 3), PackedInt32Array(4, 2, 3), PackedInt32Array(1, 8, 0), PackedInt32Array(0, 8, 9), PackedInt32Array(10, 5, 6), PackedInt32Array(6, 11, 10), PackedInt32Array(10, 11, 9), PackedInt32Array(9, 8, 10)]
 
-[sub_resource type="BoxMesh" id="BoxMesh_rd3vj"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_1jyyf"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_w7c3h"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cq4yp"]
+size = Vector3(1.9782715, 1, 1.9848633)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i0mj0"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rd3vj"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_b121j"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_t1rx8"]
-_surfaces = [{
-"aabb": AABB(-0.5288675, -0.5288675, -0.5288675, 1.057735, 1.057735, 1.057735),
-"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
-"format": 34359742487,
-"index_count": 36,
-"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("3GMHv9xjBz/cYwc/3GMHP9xjBz/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjB7/cYwe/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHP9xjBz/cYwe/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjB7/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjBz/cYwc/3GMHv9xjB7/cYwc/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHP9xjBz/cYwe/3GMHv9xjB7/cYwe/3GMHv9xjBz/cYwe/3GMHP9xjB7/cYwe//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
-}]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8iemx"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_t1rx8"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_klq6b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cq4yp"]
+cull_mode = 2
+albedo_texture = ExtResource("7_cq4yp")
 
 [sub_resource type="Animation" id="Animation_8c41q"]
 length = 0.001
@@ -139,52 +104,6 @@ _data = {
 &"day_night": SubResource("Animation_olg7q")
 }
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ie20d"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_55swn"]
-noise = SubResource("FastNoiseLite_ie20d")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ckatl"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0havn"]
-noise = SubResource("FastNoiseLite_ckatl")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ov17k"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2dnfj"]
-noise = SubResource("FastNoiseLite_ov17k")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ie20d"]
-render_priority = 0
-shader = ExtResource("17_i0mj0")
-shader_parameter/water_color = Color(0, 0.635, 0.639, 1)
-shader_parameter/color_ratio = 0.01
-shader_parameter/alpha_scale = 0.8499999810008
-shader_parameter/roughness = 0.47999998927104
-shader_parameter/normal = 0.999999977648
-shader_parameter/water_normal_noise_1 = SubResource("NoiseTexture2D_0havn")
-shader_parameter/water_normal_noise_2 = SubResource("NoiseTexture2D_2dnfj")
-shader_parameter/foam_texture = SubResource("NoiseTexture2D_55swn")
-shader_parameter/time_scale = 1.0
-shader_parameter/highlights_time_scale = 0.0
-shader_parameter/uv_scale = 1.0
-shader_parameter/normal_blend = 0.5
-shader_parameter/highlights_blend = 0.5
-shader_parameter/depth_distance = 0.5
-shader_parameter/foam_intensity = 1.0
-shader_parameter/foam_width = 0.999999977648
-shader_parameter/shore_fade_distance = 0.0
-shader_parameter/abberation_r = Vector2(0, 0)
-shader_parameter/abberation_g = Vector2(0, 0)
-shader_parameter/abberation_b = Vector2(0, 0)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_55swn"]
-material = SubResource("ShaderMaterial_ie20d")
-size = Vector2(17.26, 24.55)
-
 [node name="level" type="Node3D" unique_id=363311239]
 script = ExtResource("1_b0eaf")
 
@@ -221,98 +140,30 @@ shadow_enabled = true
 environment = SubResource("Environment_55swn")
 
 [node name="player" parent="Viewport/game" unique_id=131568609 instance=ExtResource("4_i0mj0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.1860073)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.95098, 1.5, 1.1860073)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Viewport/game" unique_id=766887237]
 navigation_mesh = SubResource("NavigationMesh_i0mj0")
 
 [node name="floor" type="MeshInstance3D" parent="Viewport/game/NavigationRegion3D" unique_id=1694999558]
-transform = Transform3D(21.828154, 0, 0, 0, 1, 0, 0, 0, 58.94677, -3.472271, 0, 0)
-mesh = SubResource("BoxMesh_rd3vj")
+transform = Transform3D(166.38792, 0, 0, 0, 1, 0, 0, 0, 177.31436, -3.472271, 0, 0)
+mesh = SubResource("PlaneMesh_1jyyf")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Viewport/game/NavigationRegion3D" unique_id=481721863]
-transform = Transform3D(1, 0, 0, 0, 32.614677, 0, 0, 0, 1, -5.834631, -6.176436, 2.7068548)
-mesh = SubResource("BoxMesh_w7c3h")
+[node name="StaticBody3D" type="StaticBody3D" parent="Viewport/game/NavigationRegion3D" unique_id=2000024310]
+transform = Transform3D(166.38792, 0, 0, 0, 1, 0, 0, 0, 177.31436, -3.472271, 0, 0)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Viewport/game/NavigationRegion3D" unique_id=2060947327]
-transform = Transform3D(1, 0, 0, 0, 32.614677, 0, 0, 0, 1, -5.834631, -6.176436, 2.7068548)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/NavigationRegion3D/StaticBody3D" unique_id=1338930897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003540039, 0, -0.0026855618)
+shape = SubResource("BoxShape3D_cq4yp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/NavigationRegion3D/StaticBody3D2" unique_id=767146641]
-shape = SubResource("BoxShape3D_i0mj0")
+[node name="bridge_house" parent="Viewport/game" unique_id=1747009796 instance=ExtResource("6_t6cq8")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -19.187, 0, 2.339)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Viewport/game/NavigationRegion3D" unique_id=236405721]
-transform = Transform3D(21.828154, 0, 0, 0, 1, 0, 0, 0, 58.94677, -3.472271, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/NavigationRegion3D/StaticBody3D" unique_id=1695554897]
-shape = SubResource("BoxShape3D_rd3vj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Viewport/game" unique_id=1390995172]
-transform = Transform3D(1, 0, 0, 0, 3.1438146, 0, 0, 0, 1, 11.894372, 0.82987595, -5.0196924)
-mesh = SubResource("BoxMesh_w7c3h")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Viewport/game" unique_id=48187476]
-transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, 0.28499794, 1.4658484, -5.377286)
-mesh = SubResource("BoxMesh_w7c3h")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Viewport/game" unique_id=1768931607]
-transform = Transform3D(1, 0, 0, 0, 5.710926, 0, 0, 0, 1, -3.384921, 1.4658484, -3.1142006)
-mesh = SubResource("BoxMesh_w7c3h")
-
-[node name="door_unlocked" parent="Viewport/game" unique_id=1176906371 instance=ExtResource("6_55swn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1966052, 1.820488, -1.1266794)
-
-[node name="door_locked" parent="Viewport/game" unique_id=1560140233 instance=ExtResource("7_ckatl")]
-transform = Transform3D(0.00938978, 0, 0.999956, 0, 1, 0, -0.999956, 0, 0.00938978, -0.2372607, 1.881645, -5.8619795)
-
-[node name="sword" type="StaticBody3D" parent="Viewport/game" unique_id=690583146]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3089266, 1.0265961, 1.3482692)
-collision_layer = 129
-script = ExtResource("7_uutfq")
-
-[node name="item" type="CollisionShape3D" parent="Viewport/game/sword" unique_id=1849342789]
-shape = SubResource("BoxShape3D_b121j")
-script = ExtResource("8_0havn")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Viewport/game/sword/item" unique_id=1066137955]
-mesh = ExtResource("9_ov17k")
-
-[node name="outline" type="MeshInstance3D" parent="Viewport/game/sword/item/MeshInstance3D" unique_id=2069053451]
-mesh = SubResource("ArrayMesh_t1rx8")
-surface_material_override/0 = SubResource("StandardMaterial3D_8iemx")
-
-[node name="actionable" parent="Viewport/game/sword" unique_id=967415909 instance=ExtResource("10_2dnfj")]
-dialogue_resource = ExtResource("11_8m6oo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/sword/actionable" unique_id=1496756977]
-shape = SubResource("BoxShape3D_t1rx8")
-
-[node name="angel" parent="Viewport/game" unique_id=686629487 instance=ExtResource("12_uvrjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0292397, 1.3344102, 0)
-collision_layer = 17
-
-[node name="actionable" parent="Viewport/game/angel" unique_id=1686025038 instance=ExtResource("10_2dnfj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5832553, 0.024553299, 0)
-dialogue_resource = ExtResource("13_qflhy")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport/game/angel/actionable" unique_id=523795407]
-transform = Transform3D(1, 0, 0, 0, 1.7702625, 0, 0, 0, 1, 1.5380921, 0.05341077, 0)
-shape = SubResource("BoxShape3D_klq6b")
+[node name="Cube" parent="Viewport/game/bridge_house" index="1" unique_id=117995990]
+material_override = SubResource("StandardMaterial3D_cq4yp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Viewport/game" unique_id=1237449746]
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_t1rx8")
 
-[node name="key" parent="Viewport/game" unique_id=1549143667 instance=ExtResource("14_f72b0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7362108, -2.9614868)
-collision_layer = 129
-script = ExtResource("7_uutfq")
-
-[node name="door" parent="Viewport/game" unique_id=1499032951 instance=ExtResource("15_b00ts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0588374, 1.9314582, 0)
-
-[node name="water" type="MeshInstance3D" parent="Viewport/game" unique_id=1753886733]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.488887, 0, -8.893372)
-mesh = SubResource("PlaneMesh_55swn")
-
-[node name="Enemy" parent="Viewport/game" unique_id=1392683814 instance=ExtResource("18_ie20d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.78402, 1.5, 12.508515)
+[editable path="Viewport/game/bridge_house"]

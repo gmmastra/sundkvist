@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8vwe2cwmrdoh" path="res://scenes/ui.tscn" id="2_yxilm"]
 [ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_mahjx"]
 [ext_resource type="Shader" uid="uid://c04bdeqtoeklw" path="res://shaders/psx.gdshader" id="3_yxilm"]
-[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="4_4fycn"]
+[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://models/door_teleport_town.tscn" id="4_4fycn"]
 [ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="5_vc333"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mahjx"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ltv1n25thr6" path="res://player/player.tscn" id="3_q2xmn"]
 [ext_resource type="Shader" uid="uid://c04bdeqtoeklw" path="res://shaders/psx.gdshader" id="3_qe1s6"]
 [ext_resource type="Texture2D" uid="uid://duudnt1a61avj" path="res://icon.svg" id="4_bdwpd"]
-[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://scenery/door_teleport_town.tscn" id="5_g2eii"]
+[ext_resource type="PackedScene" uid="uid://g418bi2e0khn" path="res://models/door_teleport_town.tscn" id="5_g2eii"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_loj03"]
 shader = ExtResource("3_qe1s6")

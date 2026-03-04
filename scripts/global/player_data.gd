@@ -1,13 +1,16 @@
 extends Node
 var save_path: String = "user://save_files/"
-var img_save_path: String = "user://save_files/previews/"
 signal config_loaded
 
+var health: int = 100
 var spawn = Vector3(5,1.5,0)
 var location = "home"
+var last_save = ""
 
 var day: int = 1
 var day_time = [0,0]
+var start_time
+var playtime
 var inventory_items:= {
 	"key": InventoryItem.new(),
 	"sword": InventoryItem.new()
@@ -28,19 +31,22 @@ func inventory_items_to_dict() -> Dictionary:
 
 func save_player_data() -> void:
 	print("Game saved.")
+
+	var end_time = Time.get_ticks_msec()
+	playtime = (end_time - start_time) / 1000.0 + playtime
 	var save_data: Dictionary = {
 		"day": day,
-		"spawn": get_node("/root/" + get_tree().current_scene.name + "/Viewport/game/player").global_position,
-		"location": location,
+		"playtime": int(playtime),
 		"held_inventory": held_inventory,
 		"inventory_items": inventory_items_to_dict()
 	}
+	
 	var save_name = Time.get_datetime_string_from_system().replace("T", "_").replace(":", "-")
+	last_save = save_name + ".json"
 	var err: Error = FileHandler.store_json_file(save_data, save_path + save_name + ".json", true)
-	FileHandler._check_and_create_directory(img_save_path, true)
-	UiListener.save_slot_img.save_png(img_save_path + save_name + ".png")
 	if err != OK:
 		push_error("Could not save player data: ", error_string(err))
+
 
 func save_player_config() -> void:
 	var config: Dictionary = {
@@ -55,6 +61,7 @@ func save_player_config() -> void:
 
 func load_player_data(save_slot) -> Error:
 	var save_data: Dictionary = {}
+	last_save = save_slot
 	var err: Error = FileHandler.open_json_file(save_path + save_slot, save_data)
 	if err != OK:
 		push_error("Could not load player data: ", error_string(err))
@@ -67,9 +74,7 @@ func load_player_data(save_slot) -> Error:
 	
 	# parse back variables from json
 	day = save_data["day"]
-	var spawn_vec = save_data["spawn"].replace("(", "").replace(")", "").split(",")
-	spawn = Vector3(int(spawn_vec[0]), int(spawn_vec[1]), int(spawn_vec[2]))
-	location = save_data["location"]
+	playtime = save_data["playtime"]
 	held_inventory = save_data["held_inventory"]
 	inventory_items.clear()
 	for item_id in save_data["inventory_items"].keys():
@@ -95,10 +100,6 @@ func load_player_config() -> Error:
 func verify_save_data(save_data: Dictionary) -> Error:
 	if !save_data.has("day"):
 		return ERR_DOES_NOT_EXIST
-	if !save_data.has("spawn"):
-		return ERR_DOES_NOT_EXIST
-	if !save_data.has("location"):
-		return ERR_DOES_NOT_EXIST
 	if !save_data.has("held_inventory"):
 		return ERR_DOES_NOT_EXIST
 	if !save_data.has("inventory_items"):
@@ -109,6 +110,8 @@ func verify_save_data(save_data: Dictionary) -> Error:
 func clear_data():
 	day = 1
 	day_time = [0,0]
+	playtime = 0
+	start_time = Time.get_ticks_msec()
 	spawn = Vector3(5,1.5,0)
 	location = "home"
 	held_inventory = []

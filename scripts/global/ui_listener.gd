@@ -2,7 +2,6 @@ extends Node
 
 var paused = false
 var preview = false
-var save_slot_img
 
 var player: CharacterBody3D = null
 var ui: CanvasLayer = null
@@ -24,9 +23,6 @@ func _process(_delta: float) -> void:
 					Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			else:
 				get_tree().paused = true
-				save_slot_img = get_viewport().get_texture().get_image()
-				save_slot_img.resize(120, 120)
-				
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 				ui.get_node("pause_menu").show()
 				ui.get_node("dim").show()

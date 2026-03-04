@@ -9,6 +9,7 @@ var progress_bar
 var loading = false
 
 var day_start = true
+var should_save = true
 
 func _ready() -> void:
 	var root = get_tree().root
@@ -32,13 +33,14 @@ func _process(_delta: float) -> void:
 
 func new_game() -> void:
 	PlayerData.clear_data()
-	SceneManager.day_start = true
-	scene_path = "res://scenes/home.tscn"
-	change_scene(scene_path)
+	should_save = true
+	start_day()
 
 func load_game(save_slot) -> void:
+	PlayerData.clear_data()
 	if PlayerData.load_player_data(save_slot) == OK:
-		SceneManager.change_scene("res://scenes/" + PlayerData.location + ".tscn")
+		should_save = false
+		start_day()
 
 func change_scene(new_scene_path) -> void:
 	scene_path = new_scene_path
@@ -54,20 +56,42 @@ func load_scene(scene):
 	await get_tree().process_frame
 	
 	if get_tree().current_scene.name != "main_menu":
-		get_tree().get_nodes_in_group("player")[0].global_transform.origin = PlayerData.spawn
-		get_tree().get_nodes_in_group("player")[0].look_at(Vector3(0, 0, 0))
-		get_tree().get_nodes_in_group("player")[0].rotation.x = 0
+		var player = get_tree().get_nodes_in_group("player")[0]
+		var ui = get_tree().get_nodes_in_group("ui")[0]
+		
+		player.global_transform.origin = PlayerData.spawn
+		player.look_at(Vector3(0, 0, 0))
+		player.rotation.x = 0
+		
+		ui.get_node("day").text = "DAY " + str(PlayerData.day)
+		ui.get_node("health/RichTextLabel").text = "HP: " + str(PlayerData.health) + "/100 "
+		ui.get_node("health/HSlider").value = PlayerData.health
+		
+		if day_start:
+			get_tree().get_nodes_in_group("player")[0].hidden = true
+			PlayerData.health = 100
+			if should_save:
+				PlayerData.save_player_data()
+			should_save = true
 
-func end_of_day():
-	#play eod screen, saving symbol
-	PlayerData.day += 1
+func start_day():
+	day_start = true
 	PlayerData.day_time = [0,0]
 	PlayerData.spawn = Vector3(5,1.5,0)
 	PlayerData.location = "player_house"
-	get_tree().get_nodes_in_group("player")[0].hidden = true
-	UiListener.save_slot_img = get_viewport().get_texture().get_image()
-	UiListener.save_slot_img.resize(120, 120)
-	#update enemy spawns
-	day_start = true
-	PlayerData.save_player_data()
 	change_scene("res://scenes/home.tscn")
+
+# player doesn't survive day; load last save
+func reset_day():
+	# show game over screen, reload from last checkpoint/quit to title
+	should_save = false
+	if PlayerData.last_save != "":
+		load_game(PlayerData.last_save)
+	else:
+		change_scene("res://scenes/main_menu.tscn")
+
+# player survives day
+func end_of_day():
+	#play eod screen, saving symbol
+	PlayerData.day += 1
+	start_day()
